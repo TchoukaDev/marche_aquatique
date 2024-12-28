@@ -1,0 +1,131 @@
+@font-face {
+    font-family: "roboto_regular";
+    src: url(sources/roboto_regular.ttf);
+}
+
+@font-face {
+    font-family: "roboto_bold";
+    src: url(sources/roboto_bold.ttf);
+}
+
+@font-face {
+    font-family: "roboto_italic";
+    src: url(sources/roboto_italic.ttf);
+}
+
+@font-face {
+    font-family:"roboto_bolditalic" ;
+    src: url(sources/roboto_bolditalic.ttf);
+}
+
+:root {
+    --couleur1: #F7EEDD;
+    --couleur2: #ACE2E1;
+    --couleur3: #41C9E2;
+    --couleur4: #008DDA;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "roboto_regular", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+#flex_body_accueil {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style général du header */
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--couleur3);
+    color: var(--couleur1);
+    padding: 20px;
+}
+
+/* Logo */
+header img {
+    width: auto;
+    height: 120px;
+    border-radius: 50%;
+   
+}
+
+/* Titre */
+#titre {
+    font-family: "roboto_bold";
+    font-size: 2em;
+    text-align: center;
+    
+}
+
+/* navbar */
+#navbar {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    background-color: var(--couleur1);
+    color: var(--couleur4);
+    box-shadow: 0px 5px 20px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(65,201,226,0.75);
+    -moz-box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.75);
+}
+
+#navbar a {
+    padding: 10px 20px;
+}
+
+#navbar:hover {
+    background-color: var(--couleur3);
+    color: var(--couleur1);
+}
+
+#navbar a:hover { 
+    background-color: var(--couleur1);
+    color: var(--couleur3);
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+#fond {
+    width:100%;
+    height:auto;
+}
+
+/* pré Footer */
+#prefooter {
+    margin:0px;
+    padding: 10px;
+    text-align: center;
+    background-color: var(--couleur1);
+    color: var(--couleur4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#prefooter img {
+    width: auto;
+    height: 40px;
+    vertical-align: middle;
+}
+
+
+#prefooter img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3);
+}
+
+#prefooter img:active {
+    transform:scale(0.9);
+}
