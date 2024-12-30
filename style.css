@@ -30,6 +30,10 @@
     font-family: "roboto_regular", sans-serif;
 }
 
+body, html {
+    background-color: var(--couleur1);
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -128,4 +132,37 @@ header img {
 
 #prefooter img:active {
     transform:scale(0.9);
+}
+
+
+/* Formulaire */
+form {
+    text-align: center;
+}
+
+input {
+   margin-bottom: 20px;
+}
+
+label {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+form h2 {
+    margin-bottom: 40px;
+}
+
+form h3 {
+    font-size: medium;
+    margin-bottom: 30px;
+}
+
+.form_container {
+    width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--couleur2);
+    color: var(--couleur4);
+    border-radius: 15px;
 }
