@@ -121,6 +121,7 @@ h3 {
     text-decoration: underline;
 }
 
+/* Container principaux du texte */
 .container_body {
     width: 1100px;
     margin: 20px auto;
@@ -131,16 +132,20 @@ h3 {
     flex-grow: 1;
 }
 
+/* Container de l'image de fond */
 #container_img {
     flex-grow: 1;
     min-height: 80vh;
 }
 
+/* Centrer le bienvenue */
 .bienvenue {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
 .bienvenue span {
     display: inline-block;
     font-family: "ocean", fantasy;
