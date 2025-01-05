@@ -13,7 +13,7 @@ formulaire.addEventListener("submit", (e) => {
     // Réinitialise les messages d'erreur
     erreur_formulaire.innerHTML = "";  
 
-    let mail_value = mail.value.trim();
+    let mail_value = mail.value.trim(); //Récupère la valeur saisie dans mail sans se préoccuper des espaces
     let telephone_value = telephone.value.trim();
    
 

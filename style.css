@@ -17,6 +17,11 @@
     font-family:"roboto_bolditalic" ;
     src: url(sources/roboto_bolditalic.ttf);
 }
+@font-face {
+    font-family: "ocean";
+    src: url(sources/ocean.ttf);
+}
+
 
 :root {
     --couleur1: #F7EEDD;
@@ -56,7 +61,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    background-color: var(--couleur3);
+    background: linear-gradient(45deg, var(--couleur3), var(--couleur2)) ;
     color: var(--couleur1);
     padding: 20px;
 }
@@ -107,9 +112,62 @@ header img {
     font-weight: bold;
 }
 
+/* Style du body */
+h2 {text-align: center;
+    text-decoration: underline
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+.container_body {
+    width: 1100px;
+    margin: 20px auto;
+    padding : 20px 30px;
+    background-color: var(--couleur2);
+    color: var(--couleur4);
+    border: 4px double var(--couleur4);
+    flex-grow: 1;
+}
+
 #container_img {
     flex-grow: 1;
     min-height: 80vh;
+}
+
+.bienvenue {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bienvenue span {
+    display: inline-block;
+    font-family: "ocean", fantasy;
+    color:var(--couleur3);
+    font-weight: bold;
+    font-size: 5em;
+    transform: translateY(0);
+    animation: wave 1.5s linear infinite;
+}
+
+.bienvenue span:nth-child(1) {animation-delay: 0s;}
+.bienvenue span:nth-child(2) {animation-delay: 0.1s;}
+.bienvenue span:nth-child(3) {animation-delay: 0.2s;}
+.bienvenue span:nth-child(4) {animation-delay: 0.3s;}
+.bienvenue span:nth-child(5) {animation-delay: 0.4s;}
+.bienvenue span:nth-child(6) {animation-delay: 0.5s;}
+.bienvenue span:nth-child(7) {animation-delay: 0.6s;}
+.bienvenue span:nth-child(8) {animation-delay: 0.7s;}
+.bienvenue span:nth-child(9) {animation-delay: 0.8s;}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 /* pré Footer */
@@ -148,7 +206,7 @@ header img {
     }
 
 footer {
-    background-color: var(--couleur2);
+    background: linear-gradient(45deg, var(--couleur3), var(--couleur2))
 
 }
 footer ul {
@@ -161,26 +219,7 @@ footer ul li {
     font-style: italic;
 }
 
-/* Style du body */
-h2 {text-align: center;
-    text-decoration: underline
-}
 
-h3 {
-    text-decoration: underline;
-}
-
-
-.container_body {
-    width: 1100px;
-    margin: 20px auto;
-    padding : 20px 30px;
-    background-color: var(--couleur2);
-    color: var(--couleur4);
-    border: 4px double var(--couleur4);
-    flex-grow: 1;
-    
-}
 
 /* Formulaire */
 form {
@@ -217,7 +256,8 @@ form h3 {
     width: 1100px;
     margin: 50px auto;
     padding: 20px;
-    background-color: var(--couleur2);
+    background: linear-gradient(45deg, var(--couleur3), var(--couleur1));
     color: var(--couleur4);
     border-radius: 15px;
 }
+
