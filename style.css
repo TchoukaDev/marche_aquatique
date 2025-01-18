@@ -124,7 +124,7 @@ h2 {text-align: center;
 }
 
 h3 {
-    margin-top: 90px;
+    margin-top: 30px;
     margin-bottom: 30px;
     text-decoration: underline;
 }
@@ -134,7 +134,7 @@ h3 {
     width: 1100px;
     margin: 20px auto;
     padding : 20px 70px;
-    background: linear-gradient(45deg, var(--couleur2), var(--couleur1));
+    background: linear-gradient(to right, var(--couleur2), var(--couleur1));
     color: black;
     border: 4px double var(--couleur4);
     border-radius: 5px;
@@ -145,6 +145,18 @@ h3 {
 #container_img {
     flex-grow: 1;
     min-height: 80vh;
+}
+
+.date {
+    display: inline-block;
+    margin-left: auto;
+    width:fit-content;
+    padding: 10px;
+    background: linear-gradient(to right, var(--couleur4), var(--couleur3));
+    color: var(--couleur1);
+    border-radius: 0 0 10px 10px;
+    font-weight: bold;
+    font-size: 1.3em;
 }
 
 /* Centrer le bienvenue */
@@ -214,24 +226,9 @@ h3 {
 }
 
 /* Présentation */
-#sites {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px
-}
 
-#sites div {
-    text-align: center;
-}
-
-#sites div img {
-    margin: 15px auto;
-}
-
-#sites a:hover{
-    font-weight: bold;
+#le_club {
+    margin-bottom: 90px;
 }
 
 /* Trombinoscope */
@@ -253,7 +250,63 @@ h3 {
 }
 
 #trombinoscope img {
-    width: 165px;
+    width: 80px;
+}
+
+/* Séances */
+
+.periode_seances {
+    text-align: center;
+}
+.periode_seances span{
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.tableau_seance {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px auto 50px auto;
+}
+
+.tableau_seance p {
+    font-weight: bold;
+}
+
+#les_horaires {
+    margin-bottom: 90px;
+}
+
+/* Les sites  */
+
+#sites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px
+}
+
+#sites div {
+    text-align: center;
+}
+
+#sites div img {
+    margin: 15px auto;
+}
+
+#sites a:hover{
+    font-weight: bold;
 }
 
 /* style du footer */
