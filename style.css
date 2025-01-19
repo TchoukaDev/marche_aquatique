@@ -21,6 +21,10 @@
     font-family: "ocean";
     src: url(sources/ocean.ttf);
 }
+@font-face {
+    font-family:"pacifico_regular";
+    src: url(sources/pacifico_regular.ttf)
+}
 
 
 :root {
@@ -76,8 +80,9 @@ header img {
 
 /* Titre */
 #titre {
-    font-family: "roboto_bold";
-    font-size: 2em;
+    font-family: "pacifico_regular";
+    font-weight: bold;
+    font-size: 2.5em;
     text-align: center;
     
 }
@@ -98,6 +103,8 @@ header img {
 
 #navbar a {
     padding: 10px 20px;
+    font-family: "pacifico_regular";
+    font-size: 1.2em;
 }
 
 #navbar:hover {
@@ -119,7 +126,8 @@ h2 {text-align: center;
     padding: 10px;
     width: 300px;
     border: 2px solid var(--couleur3);
-    border-radius: 5px;
+    border-radius: 50px;
+    font-family: "pacifico_regular";
     
 }
 
@@ -137,7 +145,7 @@ h3 {
     background: linear-gradient(to right, var(--couleur2), var(--couleur1));
     color: black;
     border: 4px double var(--couleur4);
-    border-radius: 5px;
+    border-radius: 100px;
     flex-grow: 1;
 }
 
@@ -154,9 +162,10 @@ h3 {
     padding: 10px;
     background: linear-gradient(to right, var(--couleur4), var(--couleur3));
     color: var(--couleur1);
-    border-radius: 0 0 10px 10px;
+    border-radius: 20px 0 20px 20px;
     font-weight: bold;
     font-size: 1.3em;
+    font-family: "pacifico_regular";
 }
 
 /* Centrer le bienvenue */
@@ -169,7 +178,7 @@ h3 {
 
 .bienvenue span {
     display: inline-block;
-    font-family: "ocean", fantasy;
+    font-family: "pacifico_regular", fantasy;
     color:var(--couleur3);
     font-weight: bold;
     font-size: 5em;
