@@ -48,6 +48,8 @@ body {
     min-height: 100vh;
     flex-grow: 1;
     background-image: url(images/fond.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     width:100%;
     min-height:100vh;
@@ -149,23 +151,75 @@ h3 {
     flex-grow: 1;
 }
 
+#container_accueil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
 /* Container de l'image de fond */
 #container_img {
     flex-grow: 1;
-    min-height: 80vh;
+    min-height: 80vh; 
+}
+
+
+#container_date_meteo {
+    display:flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: start;
+    
 }
 
 .date {
-    display: inline-block;
-    margin-left: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
     width:fit-content;
     padding: 10px;
     background: linear-gradient(to right, var(--couleur4), var(--couleur3));
     color: var(--couleur1);
     border-radius: 20px 0 20px 20px;
     font-weight: bold;
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-family: "pacifico_regular";
+}
+
+.container_meteo {
+    position:absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width:fit-content;
+    padding:10px 20px;
+    background: linear-gradient(to left, var(--couleur4), var(--couleur3));
+    color: var(--couleur1);
+    border-radius: 0 30px 30px 30px;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: "pacifico_regular"
+}
+
+#description_temperature_icone {
+    display: flex;
+    align-items: center;
+}
+
+#description_temperature {
+    text-align: center;
+}
+
+#description_temperature {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#ville {
+    text-align:  center;
 }
 
 /* Centrer le bienvenue */
