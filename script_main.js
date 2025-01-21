@@ -38,7 +38,7 @@ let date_du_jour = new Date()
 let ville = "Biscarrosse"
 const url = `https://api.openweathermap.org/data/2.5/weather?q=biscarrosse&appid=22432402c2786a96615d7d83baadf410&units=metric&lang=fr`
 afficherMeteo();
-setInterval(afficherMeteo, 120000);
+setInterval(afficherMeteo, 120000 );
 
 function afficherMeteo(){
   let requete = new XMLHttpRequest();
@@ -51,22 +51,21 @@ function afficherMeteo(){
         let reponse = requete.response;
 
       let meteo_ville = document.querySelector("#ville")
-      let enfants_ville = meteo_ville.innerHTML
-      meteo_ville.innerHTML = ville + enfants_ville
-      meteo_ville.classList.add("container_meteo")
+      meteo_ville.innerHTML = ville
 
-        let temps = reponse.weather[0].description;
+      let temps = reponse.weather[0].description;
         document.querySelector("#description_meteo").textContent = temps;
 
         let icone = reponse.weather[0].icon;
         let icon_url = `https://openweathermap.org/img/wn/${icone}@2x.png`;
         let container_icone_meteo = document.querySelector("#container_icone_meteo")
+        container_icone_meteo.innerHTML = "";
         let icone_meteo = document.createElement("img");
         icone_meteo.src = icon_url
         container_icone_meteo.append(icone_meteo)
 
         let temperature = reponse.main.temp;
-        document.querySelector("#temperature").textContent = `${temperature}°C`;
+        document.querySelector("#temperature").textContent =`${Math.round(temperature)}°C`;
       
       }
     else {
