@@ -20,9 +20,16 @@ images.forEach(image => {
 
 let date = document.querySelector(".date")
 date.classList.add('date')
+
+try {
 afficher_date()
 setInterval(afficher_date, 1000)
- function afficher_date() {
+ }
+ catch(e) {
+  console.log(e.message)
+ }
+
+function afficher_date() {
 let date_du_jour = new Date()
   date.textContent = date_du_jour.toLocaleString(navigator.language, {
   weekday: "short",
@@ -40,15 +47,13 @@ const url = `https://api.openweathermap.org/data/2.5/weather?q=biscarrosse&appid
 afficherMeteo();
 setInterval(afficherMeteo, 120000 );
 
-function afficherMeteo(){
-  let requete = new XMLHttpRequest();
-  requete.open("GET", url);
-  requete.responseType = "json";
-  requete.send();
-  requete.onload = function() {
-    if (requete.readyState === XMLHttpRequest.DONE) {
-      if (requete.status === 200) {
-        let reponse = requete.response;
+async function afficherMeteo(){
+  const requete = await fetch(url, {
+    method: "GET"
+  })
+  if(requete.ok) {
+
+    const reponse = await requete.json()
 
       let meteo_ville = document.querySelector("#ville")
       meteo_ville.innerHTML = ville
@@ -69,8 +74,8 @@ function afficherMeteo(){
       
       }
     else {
-      alert("une erreur est survenue")
+      let container_meteo = document.querySelector("#container_meteo")
+      container_meteo.remove()
+      throw new Error("Impossible de charger la météo.")
     }
     }
-  }
-}
