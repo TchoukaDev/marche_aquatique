@@ -38,5 +38,3 @@ formulaire.addEventListener("submit", (e) => {
         formulaire.textContent = "Merci d'avoir pris contact avec nous, nous reviendrons vers vous dans les plus brefs délais pour vous répondre. "
     }
 });
-
-    
