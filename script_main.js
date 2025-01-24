@@ -115,50 +115,52 @@ function pageIndex() {
   })
   }
   
-  
-  let ville = "Biscarrosse"
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=biscarrosse&appid=22432402c2786a96615d7d83baadf410&units=metric&lang=fr`
-  afficherMeteo();
-  setInterval(afficherMeteo, 120000 );
-  
-  async function afficherMeteo(){
+  const ville = "Biscarrosse"
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=22432402c2786a96615d7d83baadf410&units=metric&lang=fr`;
 
-    document.querySelector('.container_meteo').style.display = "none"
+  async function afficherMeteo() {
 
-    const requete = await fetch(url, {
-      method: "GET"
-    })
+    const spinner = document.querySelector("#spinner");
+    const meteo_contenu = document.querySelector("#meteo_contenu");
   
-    if(requete.ok) {
+
+    spinner.classList.remove("hidden");
+    meteo_contenu.classList.add("hidden");
   
-      const reponse = await requete.json()
+    try {
+
+      const requete = await fetch(url);
+      if (requete.ok) {
+        const reponse = await requete.json();
   
-        let meteo_ville = document.querySelector("#ville")
-        meteo_ville.innerHTML = ville
+
+        document.querySelector("#ville").textContent = ville;
+        document.querySelector("#description_meteo").textContent = reponse.weather[0].description;
   
-        let temps = reponse.weather[0].description;
-          document.querySelector("#description_meteo").textContent = temps;
+        const icone = reponse.weather[0].icon;
+        const icon_url = `https://openweathermap.org/img/wn/${icone}@2x.png`;
+        const container_icone_meteo = document.querySelector("#container_icone_meteo");
+        container_icone_meteo.innerHTML = `<img src="${icon_url}" alt="Icone météo">`;
   
-          let icone = reponse.weather[0].icon;
-          let icon_url = `https://openweathermap.org/img/wn/${icone}@2x.png`;
-          let container_icone_meteo = document.querySelector("#container_icone_meteo")
-          container_icone_meteo.innerHTML = "";
-          let icone_meteo = document.createElement("img");
-          icone_meteo.src = icon_url
-          container_icone_meteo.append(icone_meteo)
+        const temperature = reponse.main.temp;
+        document.querySelector("#temperature").textContent = `${Math.round(temperature)}°C`;
   
-          let temperature = reponse.main.temp;
-          document.querySelector("#temperature").textContent =`${Math.round(temperature)} °C`;
-          document.querySelector(".container_meteo").style.display = "flex"
-        
-        }
-        
-      else {
-        let container_meteo = document.querySelector("#container_meteo")
-        container_meteo.remove()
-        throw new Error("Impossible de charger la mété©o.")
+  
+        spinner.classList.add("hidden");
+        meteo_contenu.classList.remove("hidden");
+      
+      } else {
+        throw new Error("Erreur lors de la récupération des données météo.");
       }
-      }
+    } catch (error) {
+      console.error(error.message);
+      document.querySelector("#meteo_contenu").innerHTML = "<p>Erreur : Impossible de charger les données météo.</p>";
+      spinner.classList.add("hidden");
+      meteo_contenu.classList.remove("hidden");
+    }
+  }
+  
+    afficherMeteo();
   
 }
 
