@@ -31,7 +31,6 @@ function textScrollRight(container, texte) {
  }
 
  requestAnimationFrame(step);
-
 }
 
 
@@ -73,7 +72,6 @@ function textScrollRight(container, texte) {
 
 function pageIndex() {
 
-  //_blank permet d'ouvrir un nouvel onglet plutÃ´t qu'une nouvelle fenÃªtre//
   let facebook = document.getElementById("facebook");
   facebook.addEventListener("click", () => {
       window.open("https://www.facebook.com/share/18P1oWswhE/", "_blank");
@@ -128,7 +126,6 @@ function pageIndex() {
     meteo_contenu.classList.add("hidden");
   
     try {
-
       const requete = await fetch(url);
       if (requete.ok) {
         const reponse = await requete.json();
@@ -149,8 +146,6 @@ function pageIndex() {
         spinner.classList.add("hidden");
         meteo_contenu.classList.remove("hidden");
       
-      } else {
-        throw new Error("Erreur lors de la récupération des données météo.");
       }
     } catch (error) {
       console.error(error.message);
@@ -161,7 +156,7 @@ function pageIndex() {
   }
   
     afficherMeteo();
-  
+    setInterval(afficherMeteo, 300000)
 }
 
 
@@ -172,9 +167,6 @@ const texte_club = document.querySelector("#texte_club");
 
 textScrollLeft(container_club, texte_club)
 textScrollRight(container_animateurs, texte_animateurs)
-
-
-
 }
 
 
@@ -199,7 +191,7 @@ function pageMarcheAquatique() {
   textScrollRight(container_bienfaits, texte_bienfaits)
 }
 
-// Appel des fonctions en fonction de la page
+
 if (window.location.href.includes('index')) {
   pageIndex();
 }

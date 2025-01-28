@@ -239,14 +239,11 @@ h3 {
     flex-wrap: nowrap;
 }
 
-#description_meteo, #temperature {
+#description_meteo, #temperature, #ville {
     font-family: "pacifico_regular";
+    text-align:  center;
 }
 
-#ville {
-    text-align:  center;
-    font-family: "pacifico_regular";
-}
 
 
 .bienvenue {
