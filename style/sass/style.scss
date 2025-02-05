@@ -1,0 +1,451 @@
+@import "variables";
+
+@font-face {
+    font-family: "ocean";
+    src: url(../../sources/ocean.ttf);
+}
+@font-face {
+    font-family:"pacifico_regular";
+    src: url(../../sources/pacifico_regular.ttf)
+}
+@font-face {
+    font-family: "delius";
+    src: url(../../sources/Delius.ttf);
+}
+
+@mixin flexbox($flexdirection, $justifycontent, $aligneitems:center) {
+    display: flex;
+    flex-direction: $flexdirection;
+    justify-content: $justifycontent;
+    align-items: $aligneitems;
+}
+
+@mixin couleurs($background, $police: black) {
+    background: $background;
+    color: $police;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "delius", fantasy;
+}
+
+body, html {
+    @include couleurs($couleur1)
+}
+body {
+    @include flexbox(column, normal, normal);
+    min-height: 100vh;
+    flex-grow: 1;
+    background-image: url(../../images/fond.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width:100%;
+    min-height:100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Style général du header */
+header {
+    @include flexbox(row, space-around, center);
+    @include couleurs(linear-gradient(45deg, $couleur3, $couleur2), $couleur1);
+    padding: 20px;
+
+/* Logo */
+    img {
+        width: auto;
+        height: 120px;
+        border-radius: 50%;
+    }
+}
+
+/* Titre */
+#titre {
+    font-family: $pacifico;
+    font-weight: bold;
+    font-size: 2.5em;
+    text-align: center;
+    
+}
+
+/* navbar */
+#navbar {
+    @include flexbox(row, center, center);
+    @include couleurs($couleur1, $couleur4);
+    gap: 70px;
+    box-shadow: 0px 5px 20px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 3px 10px 0px rgba(65,201,226,0.75);
+    -moz-box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.75);
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+
+    &:hover {
+        @include couleurs($couleur3, $couleur1);
+    }
+    
+    a {
+        padding: 10px 20px;
+        font-family: $pacifico;
+        font-size: 1.2em;
+
+        &:hover { 
+            @include couleurs($couleur1, $couleur3);
+            border-radius: 20px;
+            font-weight: bold;
+        }
+    }
+
+}
+
+/* Style du body */
+h2 {text-align: center;
+    text-decoration: underline;
+    margin: 30px auto;
+    padding: 10px;
+    width: 300px;
+    border: 2px solid $couleur3;
+    border-radius: 50px;
+    font-family: $pacifico;
+    box-shadow: 3px 3px 0px 3px rgba(65,201,226,0.75);
+    
+}
+
+h3 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+}
+
+/* Container principaux du texte */
+.container_body {
+    @include couleurs(linear-gradient(to right, $couleur2, $couleur1));
+    width: 1100px;
+    margin: 20px auto;
+    padding : 20px 70px;
+    border: 4px double $couleur4;
+    border-radius: 100px;
+    flex-grow: 1;
+}
+
+#container_accueil {
+    @include flexbox(row, space-between);
+    position: relative;
+}
+
+/* Container de l'image de fond */
+#container_img {
+    flex-grow: 1;
+    min-height: 80vh; 
+}
+
+
+#container_date_meteo {
+    @include flexbox(row-reverse, space-between, start);
+    
+}
+
+.date {
+    @include couleurs(linear-gradient(to right, $couleur4, $couleur3), $couleur1);
+    position: absolute;
+    top: 130px;
+    right: 100px;
+    width:fit-content;
+    padding: 10px;
+     border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: $pacifico;
+}
+
+.container_meteo {
+    @include flexbox(column, center);
+    @include couleurs(linear-gradient(to left, $couleur4, $couleur3), $couleur1);
+    position: absolute;
+    top: 80px;
+    left: 100px;
+    width:fit-content;
+    color: $couleur1;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: $pacifico;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3; /* Couleur de fond */
+    border-top: 4px solid #3498db; /* Couleur animée */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 50px auto; /* Centré */
+    }
+
+    @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    }
+
+    .hidden {
+    display: none;
+    }
+
+#description_temperature_icone {
+    @include flexbox(row, start);
+}
+
+#description_temperature {
+     @include flexbox(column, start);
+}
+
+#description_meteo, #temperature, #ville {
+    font-family: $pacifico;
+    text-align:  center;
+}
+
+
+
+.bienvenue {
+    @include flexbox(row, center);
+
+    span {
+        display: inline-block;
+        font-family: $pacifico;
+        color: $couleur3;
+        font-weight: bold;
+        font-size: 5em;
+        transform: translateY(0);
+        animation: wave 1.5s linear infinite;
+
+        &:nth-child(1) {animation-delay: 0s;}
+        &:nth-child(2) {animation-delay: 0.1s;}
+        &:nth-child(3) {animation-delay: 0.2s;}
+        &:nth-child(4) {animation-delay: 0.3s;}
+        &:nth-child(5) {animation-delay: 0.4s;}
+        &:nth-child(6) {animation-delay: 0.5s;}
+        &:nth-child(7) {animation-delay: 0.6s;}
+        &:nth-child(8) {animation-delay: 0.7s;}
+        &:nth-child(9) {animation-delay: 0.8s;}
+    }
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* pré Footer */
+#prefooter {
+    @include couleurs($couleur1, $couleur4);
+    margin:0px;
+    padding: 20px;
+    text-align: center;
+    @include flexbox(row, center);
+    gap: 20px;
+
+    img {
+        width: auto;
+        height: 40px;
+        vertical-align: middle;
+
+        &:hover {
+            transform: scale(1.1);
+            filter: brightness(1.3);
+        }
+        
+        &:active {
+            transform:scale(0.9);
+        }
+    }
+   
+}
+
+
+/* Trombinoscope */
+
+#trombinoscope {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-rows: repeat(4, 1fr);
+   text-align: center;
+   align-items: center;
+   row-gap: 20px;
+   
+   img {
+    width: 80px;
+}
+}
+
+#lafont {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+/* Séances */
+
+.periode_seances {
+    text-align: center;
+
+    span{
+        text-decoration: underline;
+    }
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+.tableau_seance {
+    @include flexbox(column, center);
+    margin: 50px auto;
+    font-weight: bold;
+}
+
+#le_club, #la_marche {
+    margin-bottom: 35px;
+    padding-bottom: 30px;
+}
+
+#les_horaires {
+    margin-bottom: 50px;
+}
+
+
+#les_horaires, #le_club, #la_marche {
+    border-bottom: 5px dotted $couleur4;
+}
+
+#container_horaires, #container_sites, #container_club, #container_animateurs, #container_marche, #container_bienfaits {
+    @include flexbox(row, start);
+    @include couleurs(linear-gradient(to right, $couleur4, $couleur3));
+    margin: 30px auto;
+    overflow: hidden;
+    width: 500px;
+    height: 50px;
+    border: 2px $couleur4 solid;
+    border-radius: 25px;
+    box-shadow: 1px 1px 0px 3px rgba(0, 141, 218, 0.75) inset,
+                -1px -1px 0px 3px rgba(0, 141, 218, 0.75) inset,
+                1px -1px 0px 3px rgba(0, 141, 218, 0.75) inset,
+                -1px 1px 0px 3px rgba(0, 141, 218, 0.75) inset;
+    }
+
+
+#texte_horaires, #texte_sites, #texte_club, #texte_animateurs, #texte_marche, #texte_bienfaits {
+    display: inline-block;
+    color: $couleur1;  
+    will-change: transform;
+}
+
+
+
+/* Les sites  */
+
+#sites {
+    @include flexbox(column, center);
+    gap: 30px;
+    margin: 20px auto;
+
+    div {
+        text-align: center;
+    }
+
+        
+    img {
+        margin: 25px auto;
+        transition: 0.3s;
+    
+        &:hover{
+            /* transform: scale(1.1); */
+            animation: zoom 1.2s linear infinite
+        }
+    }
+}
+
+@keyframes zoom {
+    50% {transform:scale(1.1)}
+    100% {transform: scale(1);}
+}
+
+/* style du footer */
+footer {
+    @include flexbox(row, space-evenly);
+    @include couleurs(linear-gradient(45deg, $couleur3, $couleur2));
+    padding: 40px;
+    font-weight:bold
+}
+
+.liens_a {
+    @include flexbox(column, start);
+    margin-top: 15px;
+    font-size: 0.8em;
+    font-weight: initial;
+}
+
+#contact:hover, .liens_a a:hover {
+    color: $couleur4;
+    font-weight: bold;
+}
+
+/* Formulaire */
+form {
+    text-align: center;
+
+    h2 {
+        margin-bottom: 40px;
+    }
+
+    h3 {
+        font-size: medium;
+        margin-bottom: 30px;
+    }
+}
+
+input {
+    @include couleurs($couleur1);
+   margin-bottom: 20px;
+   border-radius: 5px;
+   padding: 5px;
+}
+
+textarea {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+label {
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+.form_container {
+    width: 1100px;
+    margin: 50px auto;
+    padding: 20px;
+    @include couleurs(linear-gradient(45deg, $couleur3 $couleur1), $couleur4);
+    border-radius: 15px;
+}
+

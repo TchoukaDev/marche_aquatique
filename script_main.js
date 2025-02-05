@@ -164,6 +164,8 @@ function pagePresentation(){
 
 const container_club = document.querySelector("#container_club");
 const texte_club = document.querySelector("#texte_club");
+const container_animateurs= document.querySelector("#container_animateurs");
+const texte_animateurs = document.querySelector("#texte_animateurs");
 
 textScrollLeft(container_club, texte_club)
 textScrollRight(container_animateurs, texte_animateurs)
