@@ -20,9 +20,26 @@
     align-items: $aligneitems;
 }
 
-@mixin couleurs($background, $police: black) {
+@mixin couleurs($background, $texte: black) {
     background: $background;
-    color: $police;
+    color: $texte;
+}
+
+@mixin boxShadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin font($police, $weight, $size) {
+    font-family: $police;
+    font-weight: $weight;
+    font-size: $size;
+}
+
+@mixin border($border, $radius) {
+    border:$border;
+    border-radius: $radius;
 }
 
 * {
@@ -61,27 +78,34 @@ header {
     img {
         width: auto;
         height: 120px;
-        border-radius: 50%;
+        border-radius: 50%
     }
 }
 
 /* Titre */
-#titre {
-    font-family: $pacifico;
-    font-weight: bold;
-    font-size: 2.5em;
+.titre {
+    @include font($pacifico, bold, 2.5em);
+
+}
+
+.text_center {
     text-align: center;
-    
+}
+
+.pacifico {
+    font-family: $pacifico
+}
+
+.padding10 {
+    padding: 10px;
 }
 
 /* navbar */
-#navbar {
+.navbar {
+    @include boxShadow(0px 3px 10px 0px rgba(65,201,226,0.75));
     @include flexbox(row, center, center);
     @include couleurs($couleur1, $couleur4);
     gap: 70px;
-    box-shadow: 0px 5px 20px 1px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 3px 10px 0px rgba(65,201,226,0.75);
-    -moz-box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.75);
     position: sticky;
     top: 0px;
     z-index: 1;
@@ -91,30 +115,28 @@ header {
     }
     
     a {
+        @include font($pacifico, normal, 1.2em);
         padding: 10px 20px;
-        font-family: $pacifico;
-        font-size: 1.2em;
 
         &:hover { 
             @include couleurs($couleur1, $couleur3);
-            border-radius: 20px;
             font-weight: bold;
+            border-radius: 50%;
         }
     }
 
 }
 
 /* Style du body */
-h2 {text-align: center;
+h2 {
+    @include boxShadow(3px 3px 0px 3px rgba(65,201,226,0.75));
+    @include border(2px solid $couleur3, 50px);
+    text-align: center;
     text-decoration: underline;
     margin: 30px auto;
     padding: 10px;
     width: 300px;
-    border: 2px solid $couleur3;
-    border-radius: 50px;
     font-family: $pacifico;
-    box-shadow: 3px 3px 0px 3px rgba(65,201,226,0.75);
-    
 }
 
 h3 {
@@ -124,71 +146,59 @@ h3 {
 }
 
 /* Container principaux du texte */
-.container_body {
+.container_principal {
     @include couleurs(linear-gradient(to right, $couleur2, $couleur1));
+    @include border(4px double $couleur4, 100px);
     width: 1100px;
     margin: 20px auto;
     padding : 20px 70px;
-    border: 4px double $couleur4;
-    border-radius: 100px;
     flex-grow: 1;
 }
 
-#container_accueil {
+.container_accueil {
     @include flexbox(row, space-between);
     position: relative;
 }
 
 /* Container de l'image de fond */
-#container_img {
+.container_img_background {
     flex-grow: 1;
     min-height: 80vh; 
 }
 
 
-#container_date_meteo {
-    @include flexbox(row-reverse, space-between, start);
-    
-}
-
 .date {
     @include couleurs(linear-gradient(to right, $couleur4, $couleur3), $couleur1);
+    @include font($pacifico, bold, 1.5em);
+    @include border(3px solid $couleur2, 20px);
     position: absolute;
     top: 130px;
     right: 100px;
     width:fit-content;
-    padding: 10px;
-     border-radius: 20px;
-    font-weight: bold;
-    font-size: 1.5em;
-    font-family: $pacifico;
 }
 
 .container_meteo {
     @include flexbox(column, center);
     @include couleurs(linear-gradient(to left, $couleur4, $couleur3), $couleur1);
+    @include font($pacifico, bold, 1.5em);
+    @include border(3px solid $couleur2, 30px);
     position: absolute;
     top: 80px;
     left: 100px;
     width:fit-content;
     color: $couleur1;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1.5em;
-    font-family: $pacifico;
 }
 
 .spinner {
-    border: 4px solid #f3f3f3; /* Couleur de fond */
+    @include border(4px solid #f3f3f3, 50%); /* Couleur de fond */
     border-top: 4px solid #3498db; /* Couleur animée */
-    border-radius: 50%;
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
     margin: 50px auto; /* Centré */
     }
 
-    @keyframes spin {
+@keyframes spin {
     0% {
         transform: rotate(0deg);
     }
@@ -197,46 +207,33 @@ h3 {
     }
     }
 
-    .hidden {
+.hidden {
     display: none;
     }
 
-#description_temperature_icone {
+.description_temperature_icone {
     @include flexbox(row, start);
 }
 
-#description_temperature {
+.description_temperature {
      @include flexbox(column, start);
 }
-
-#description_meteo, #temperature, #ville {
-    font-family: $pacifico;
-    text-align:  center;
-}
-
-
 
 .bienvenue {
     @include flexbox(row, center);
 
     span {
+        @include font($pacifico, bold, 5em);
         display: inline-block;
-        font-family: $pacifico;
         color: $couleur3;
-        font-weight: bold;
-        font-size: 5em;
         transform: translateY(0);
         animation: wave 1.5s linear infinite;
 
-        &:nth-child(1) {animation-delay: 0s;}
-        &:nth-child(2) {animation-delay: 0.1s;}
-        &:nth-child(3) {animation-delay: 0.2s;}
-        &:nth-child(4) {animation-delay: 0.3s;}
-        &:nth-child(5) {animation-delay: 0.4s;}
-        &:nth-child(6) {animation-delay: 0.5s;}
-        &:nth-child(7) {animation-delay: 0.6s;}
-        &:nth-child(8) {animation-delay: 0.7s;}
-        &:nth-child(9) {animation-delay: 0.8s;}
+        @for $i from 1 through 9 {
+            &:nth-child(#{$i}) {
+              animation-delay: #{($i - 1) * 0.1s}; //animation sur chaque lettre avec délai différent 
+            }
+          }
     }
 }
 
@@ -250,12 +247,11 @@ h3 {
 }
 
 /* pré Footer */
-#prefooter {
+.prefooter {
     @include couleurs($couleur1, $couleur4);
-    margin:0px;
-    padding: 20px;
-    text-align: center;
     @include flexbox(row, center);
+    margin: 0px;
+    padding: 20px;
     gap: 20px;
 
     img {
@@ -278,20 +274,19 @@ h3 {
 
 /* Trombinoscope */
 
-#trombinoscope {
+.trombinoscope {
    display: grid;
    grid-template-columns: repeat(3, 1fr);
    grid-template-rows: repeat(4, 1fr);
-   text-align: center;
    align-items: center;
    row-gap: 20px;
    
    img {
     width: 80px;
-}
+    }   
 }
 
-#lafont {
+.lafont {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 4;
@@ -301,10 +296,13 @@ h3 {
 /* Séances */
 
 .periode_seances {
+
     text-align: center;
 
     span{
         text-decoration: underline;
+        display: inline-block;
+        margin: 40px auto;
     }
 }
 
@@ -320,41 +318,32 @@ td, th {
 
 .tableau_seance {
     @include flexbox(column, center);
-    margin: 50px auto;
     font-weight: bold;
 }
 
-#le_club, #la_marche {
-    margin-bottom: 35px;
-    padding-bottom: 30px;
-}
-
-#les_horaires {
-    margin-bottom: 50px;
-}
-
-
-#les_horaires, #le_club, #la_marche {
+.separation_bottom {
     border-bottom: 5px dotted $couleur4;
+    margin-bottom: 50px;
+    padding-bottom: 50px;
 }
 
-#container_horaires, #container_sites, #container_club, #container_animateurs, #container_marche, #container_bienfaits {
+// Animation scroll//
+.container_scroll {
     @include flexbox(row, start);
     @include couleurs(linear-gradient(to right, $couleur4, $couleur3));
-    margin: 30px auto;
+    @include boxShadow(1px 1px 0px 3px rgba(0, 141, 218, 0.75) inset);
+    @include boxShadow(-1px -1px 0px 3px rgba(0, 141, 218, 0.75) inset);
+    @include boxShadow(1px -1px 0px 3px rgba(0, 141, 218, 0.75) inset);
+    @include boxShadow(-1px 1px 0px 3px rgba(0, 141, 218, 0.75) inset);
+    @include border(2px $couleur4 solid, 25px);
+    margin: 40px auto;
     overflow: hidden;
     width: 500px;
     height: 50px;
-    border: 2px $couleur4 solid;
-    border-radius: 25px;
-    box-shadow: 1px 1px 0px 3px rgba(0, 141, 218, 0.75) inset,
-                -1px -1px 0px 3px rgba(0, 141, 218, 0.75) inset,
-                1px -1px 0px 3px rgba(0, 141, 218, 0.75) inset,
-                -1px 1px 0px 3px rgba(0, 141, 218, 0.75) inset;
     }
 
 
-#texte_horaires, #texte_sites, #texte_club, #texte_animateurs, #texte_marche, #texte_bienfaits {
+.texte_scroll {
     display: inline-block;
     color: $couleur1;  
     will-change: transform;
@@ -364,7 +353,7 @@ td, th {
 
 /* Les sites  */
 
-#sites {
+.sites {
     @include flexbox(column, center);
     gap: 30px;
     margin: 20px auto;
@@ -379,7 +368,6 @@ td, th {
         transition: 0.3s;
     
         &:hover{
-            /* transform: scale(1.1); */
             animation: zoom 1.2s linear infinite
         }
     }
@@ -399,20 +387,19 @@ footer {
 }
 
 .liens_a {
-    @include flexbox(column, start);
+    @include flexbox(column, start, start);
     margin-top: 15px;
     font-size: 0.8em;
     font-weight: initial;
 }
 
-#contact:hover, .liens_a a:hover {
+.contact:hover, .liens_a a:hover {
     color: $couleur4;
     font-weight: bold;
 }
 
 /* Formulaire */
 form {
-    text-align: center;
 
     h2 {
         margin-bottom: 40px;
@@ -426,14 +413,13 @@ form {
 
 input {
     @include couleurs($couleur1);
+    @include border(none, 5px);
    margin-bottom: 20px;
-   border-radius: 5px;
    padding: 5px;
 }
 
 textarea {
-    border-radius: 10px;
-    padding: 10px;
+    @include border(none, 10px);
 }
 
 label {
@@ -442,10 +428,10 @@ label {
 }
 
 .form_container {
+    @include couleurs(linear-gradient(45deg, $couleur3, $couleur1));
+    @include border(none, 15px);
     width: 1100px;
     margin: 50px auto;
     padding: 20px;
-    @include couleurs(linear-gradient(45deg, $couleur3 $couleur1), $couleur4);
-    border-radius: 15px;
 }
 
