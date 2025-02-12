@@ -18,6 +18,8 @@ function textScrollRight(container, texte) {
   const elapsed = currentTimestamp - timestamp[id];
 
   if (elapsed >= 16) {
+    const largeur_texte = texte.offsetWidth;
+    const largeur_container = container.offsetWidth;
     positions[id] += 1.5
 
     if (positions[id] >= largeur_container) {
@@ -50,6 +52,8 @@ function textScrollRight(container, texte) {
      const elapsed = currentTimestamp - timestamp[id];
  
      if (elapsed >= 16) { // Environ 60 FPS
+      const largeur_texte = texte.offsetWidth;
+      const largeur_container = container.offsetWidth;
        positions[id] -= 1.5;
  
        if (positions[id] <= -largeur_texte) {
