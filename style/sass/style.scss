@@ -52,6 +52,10 @@ body, html {
 }
 body {
     @include flexbox(column, normal, normal);
+    background-image: url(../../images/fond.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
     flex-grow: 1;
     width:100%;
@@ -131,7 +135,7 @@ header {
 #toggle_navbar {
     @include border(1px solid $couleur4, 5px );
     display:none;
-    margin: 5px auto 5px 30px;
+    margin: 5px auto;
     padding: 5px;
     width: 50px;
     color: $couleur4
@@ -142,13 +146,6 @@ header {
     font-weight: bold;
 }
 
-}
-
-main {
-    background-image: url(../../images/fond.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 
 /* Style du body */
@@ -503,6 +500,11 @@ label {
         display: block !important;
     }
 
+    .navbar {
+        width:400px;
+        margin: auto;
+    }
+
     .navbar #navbar {
         display: none;
         flex-direction: column;
@@ -579,6 +581,10 @@ label {
         width: 330px;
         padding: 5px;
         border-radius: 40px;
+    }
+
+    .navbar {
+        width:100%;
     }
 
 
