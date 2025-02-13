@@ -99,16 +99,21 @@ header {
 /* navbar */
 .navbar {
     @include boxShadow(0px 3px 10px 0px rgba(65,201,226,0.75));
-    @include flexbox(row, center, center);
     @include couleurs($couleur1, $couleur4);
+
+    &:hover {
+        @include couleurs($couleur3, $couleur1);
+    }
+
+ 
+#navbar {
+    @include flexbox(row, center, center);
     gap: 40px;
     position: sticky;
     top: 0px;
     z-index: 1;
 
-    &:hover {
-        @include couleurs($couleur3, $couleur1);
-    }
+   
     
     a {
         @include font($pacifico, normal, 1.2rem);
@@ -120,6 +125,21 @@ header {
             border-radius: 50%;
         }
     }
+}
+
+#toggle_navbar {
+    @include border(1px solid $couleur4, 5px );
+    display:none;
+    margin: 5px auto 5px 30px;
+    padding: 5px;
+    width: 50px;
+    color: $couleur4
+}
+
+#toggle_navbar:hover {
+    @include couleurs($couleur1, $couleur3);
+    font-weight: bold;
+}
 
 }
 
@@ -316,7 +336,7 @@ table {
 
 td, th {
     border: 1px solid black;
-    padding: 5px;
+    padding: 10px;
     text-align: center;
 }
 
@@ -447,20 +467,33 @@ label {
     padding: 20px;
 }
 
-@media (max-width: 1140px)  {
+@media (max-width: 1260px)  {
     .container_principal {
         width: 800px;
     }
-}
+
 
 @media (max-width: 400px) {
 
     .container_principal {
         width: 330px;
-        margin: auto;
         padding: 5px;
         border-radius: 10px;
     }
+
+    #toggle_navbar {
+        display: block !important;
+    }
+
+    .navbar #navbar {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
 
     .date {
         margin: 5% auto;
@@ -511,6 +544,9 @@ label {
 
     table {
         font-size: 0.5rem;
+        th, td {
+            padding: 5px;
+        }
     }
 
     .sites {

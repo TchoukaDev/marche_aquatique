@@ -1,3 +1,15 @@
+const toggle_navbar = document.querySelector("#toggle_navbar");
+const navbar = document.querySelector("#navbar");
+
+toggle_navbar.addEventListener("click", () => {
+ if (navbar.style.display == "none" || navbar.style.display == "") {
+    navbar.style.display = "flex";
+ }
+ else navbar.style.display = "none";
+}
+)
+
+
 const positions = {};
 const timestamp = {}
 
