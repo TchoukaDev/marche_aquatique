@@ -528,6 +528,7 @@ label {
     footer {
         @include flexbox(column,space-evenly ,center);
         .references {
+            @include flexbox(column, space-evenly, start );
             margin-top: 20px;
         }
     }
