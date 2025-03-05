@@ -1,63 +1,94 @@
-
-
-//gestion du bouton toggle de la navbar responsive
-const toggle_navbar = document.querySelector("#toggle_navbar");
-const navbar = document.querySelector("#navbar");
-
-toggle_navbar.addEventListener("click", () => {
- if (navbar.style.display == "none" || navbar.style.display == "") {
-    navbar.style.display = "flex";
-    navbar.classList.remove("navbar");
- }
- else navbar.style.display = "none";
+// Initialise le bouton toggle pour la navbar responsive
+// Gère l'affichage/masquage du menu sur mobile
+function initialiserToggleNavbar() {
+  const toggle_navbar = document.querySelector("#toggle_navbar");
+  const navbar = document.querySelector("#navbar");
+  
+  if (navbar && toggle_navbar) {
+    toggle_navbar.addEventListener('click', () => {
+      navbar.classList.toggle('responsive');
+      if (navbar.classList.contains('responsive')) {
+        navbar.style.display = "flex";
+      } else {
+        navbar.style.display = "none";
+      }
+    });
+  }
 }
-)
 
-//Gestion des textes défilants
+// Charge le footer de manière asynchrone
+// Simple fetch sans cache contrairement à la navbar
+fetch('footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('footer').innerHTML = data
+  })
+
+// Gestion des animations de texte défilant
+// Stockage des positions et timestamps pour chaque conteneur
 const positions = {};
 const timestamp = {}
 
+/**
+ * Fait défiler le texte de gauche à droite de manière fluide
+ * @param {HTMLElement} container - L'élément conteneur qui définit la zone de défilement
+ * @param {HTMLElement} texte - L'élément texte à faire défiler
+ */
 function textScrollRight(container, texte) {
-  const id = container.id
+  const id = container.id;
   const largeur_texte = texte.offsetWidth;
-  const largeur_container = container.offsetWidth
 
-
+  // Initialisation des positions si c'est la première fois
+  // Le texte commence hors écran à gauche (-largeur_texte)
   if(!positions[id]) {
     positions[id] = -largeur_texte;
     timestamp[id] = 0;
   }
 
+  /**
+   * Fonction d'animation appelée à chaque frame
+   * Utilise requestAnimationFrame pour synchroniser avec le rafraîchissement écran
+   * @param {number} currentTimestamp - Timestamp fourni par requestAnimationFrame
+   */
   function step(currentTimestamp) {
-  
-  if (!timestamp[id]) timestamp[id] = currentTimestamp;
-  const elapsed = currentTimestamp - timestamp[id];
+    // Initialisation du timestamp au premier appel
+    if (!timestamp[id]) timestamp[id] = currentTimestamp;
+    const elapsed = currentTimestamp - timestamp[id];
 
-  if (elapsed >= 16) {
-    const largeur_texte = texte.offsetWidth;
-    const largeur_container = container.offsetWidth;
-    positions[id] += 1.5
+    // Limite l'animation à ~60 FPS (1000ms/60 ≈ 16ms)
+    if (elapsed >= 16) {
+      const largeur_texte = texte.offsetWidth;
+      const largeur_container = container.offsetWidth;
+      // Déplace le texte de 1.5px vers la droite
+      positions[id] += 1.5;
 
-    if (positions[id] >= largeur_container) {
-    positions[id] = -largeur_texte;
+      // Réinitialise la position quand le texte sort du conteneur par la droite
+      if (positions[id] >= largeur_container) {
+        positions[id] = -largeur_texte;
+      }
+
+      // Applique la transformation CSS pour déplacer le texte
+      texte.style.transform = `translateX(${positions[id]}px)`;
+      timestamp[id] = currentTimestamp;
+    }
+    requestAnimationFrame(step);
   }
 
-  texte.style.transform = `translateX(${positions[id]}px)`;
-  timestamp[id] = currentTimestamp;
-}
   requestAnimationFrame(step);
- }
-
- requestAnimationFrame(step);
 }
 
-
-
- function textScrollLeft(container, texte) {
+/**
+ * Fait défiler le texte de droite à gauche de manière fluide
+ * Fonctionne sur le même principe que textScrollRight
+ * @param {HTMLElement} container - L'élément conteneur qui définit la zone de défilement
+ * @param {HTMLElement} texte - L'élément texte à faire défiler
+ */
+function textScrollLeft(container, texte) {
    const id = container.id;
    const largeur_texte = texte.offsetWidth;
    const largeur_container = container.offsetWidth;
  
+   // Le texte commence à droite du conteneur
    if (!positions[id]) {
      positions[id] = largeur_container;
      timestamp[id] = 0
@@ -67,31 +98,32 @@ function textScrollRight(container, texte) {
      if (!timestamp[id]) timestamp[id] = currentTimestamp;
      const elapsed = currentTimestamp - timestamp[id];
  
-     if (elapsed >= 16) { // Environ 60 FPS
+     if (elapsed >= 16) { // ~60 FPS
       const largeur_texte = texte.offsetWidth;
       const largeur_container = container.offsetWidth;
-       positions[id] -= 1.5;
+      // Déplace le texte de 1.5px vers la gauche
+      positions[id] -= 1.5;
  
-       if (positions[id] <= -largeur_texte) {
-         positions[id] = largeur_container;
-       }
+      // Réinitialise la position quand le texte sort du conteneur par la gauche
+      if (positions[id] <= -largeur_texte) {
+        positions[id] = largeur_container;
+      }
  
-       texte.style.transform = `translateX(${positions[id]}px)`;
-       timestamp[id] = currentTimestamp;
+      texte.style.transform = `translateX(${positions[id]}px)`;
+      timestamp[id] = currentTimestamp;
      }
  
      requestAnimationFrame(step);
    }
  
    requestAnimationFrame(step);
- }
+}
 
-
-
-
-
+// Initialisation spécifique pour la page d'accueil
+// Gère le bouton Facebook, la date et la météo
 function pageIndex() {
 
+  // Gestion du bouton Facebook
   let facebook = document.getElementById("facebook");
   facebook.addEventListener("click", () => {
       window.open("https://www.facebook.com/share/18P1oWswhE/", "_blank");
@@ -99,19 +131,18 @@ function pageIndex() {
   ;
      
   
-      // Liste des images Ã  mettre Ã  jour
+  // Mise à jour des images avec timestamp pour éviter le cache
   const images = document.querySelectorAll("img");
   
-  // Appliquer un timestamp unique Ã  chaque image
+  // Appliquer un timestamp unique à chaque image
   images.forEach(image => {
     const src = image.getAttribute("src");
     image.setAttribute("src", src + "?v=" + new Date().getTime());
   });
   
-  //Affichage de la date
+  // Affichage et mise à jour de la date toutes les secondes
   let date = document.querySelector(".date")
     date.classList.add("date");
-  
   
   try {
   afficher_date()
@@ -133,7 +164,8 @@ function pageIndex() {
   })
   }
   
-  //Requête et affichage météo
+  // Récupération et affichage des données météo
+  // Rafraîchissement toutes les 5 minutes (300000ms)
   const ville = "Biscarrosse"
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=22432402c2786a96615d7d83baadf410&units=metric&lang=fr`;
 
@@ -163,7 +195,6 @@ function pageIndex() {
         const temperature = reponse.main.temp;
         document.querySelector("#temperature").textContent = `${Math.round(temperature)}°C`;
   
-  
         spinner.classList.add("hidden");
         meteo_contenu.classList.remove("hidden");
       
@@ -180,7 +211,8 @@ function pageIndex() {
     setInterval(afficherMeteo, 300000)
 }
 
-
+// Initialisation de la page de présentation
+// Configure les animations de texte défilant
 function pagePresentation(){
 
 const container_club = document.querySelector("#container_club");
@@ -192,7 +224,8 @@ textScrollLeft(container_club, texte_club)
 textScrollRight(container_animateurs, texte_animateurs)
 }
 
-
+// Initialisation de la page des séances
+// Configure les animations de texte défilant
 function pageSeances() {
 
   const container_horaires = document.querySelector("#container_horaires");
@@ -204,6 +237,8 @@ function pageSeances() {
   textScrollRight(container_sites, texte_sites)
 }
 
+// Initialisation de la page marche aquatique
+// Configure les animations de texte défilant
 function pageMarcheAquatique() {
   const container_marche = document.querySelector("#container_marche");
   const texte_marche = document.querySelector("#texte_marche");
@@ -214,17 +249,18 @@ function pageMarcheAquatique() {
   textScrollRight(container_bienfaits, texte_bienfaits)
 }
 
-
+// Système de routage simple basé sur l'URL
+// Appelle la fonction d'initialisation appropriée selon la page courante
 if (window.location.href.includes('index')) {
   pageIndex();
 }
 
 else if (window.location.href.includes("presentation")) {
   pagePresentation();
+
 }
 
  else if (window.location.href.includes('seances')) {
-  
   pageSeances();
 }
 

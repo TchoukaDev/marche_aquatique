@@ -417,6 +417,10 @@ footer {
     }
 }
 
+.references {
+    @include flexbox(row, space-evenly , start )
+}
+
 .liens_a {
     @include flexbox(column, start, start);
     margin-top: 15px;
@@ -523,6 +527,9 @@ label {
 
     footer {
         @include flexbox(column,space-evenly ,center);
+        .references {
+            margin-top: 20px;
+        }
     }
 
     header {
