@@ -1,3 +1,6 @@
+
+
+//gestion du bouton toggle de la navbar responsive
 const toggle_navbar = document.querySelector("#toggle_navbar");
 const navbar = document.querySelector("#navbar");
 
@@ -10,7 +13,7 @@ toggle_navbar.addEventListener("click", () => {
 }
 )
 
-
+//Gestion des textes défilants
 const positions = {};
 const timestamp = {}
 
@@ -105,7 +108,7 @@ function pageIndex() {
     image.setAttribute("src", src + "?v=" + new Date().getTime());
   });
   
-  
+  //Affichage de la date
   let date = document.querySelector(".date")
     date.classList.add("date");
   
@@ -130,6 +133,7 @@ function pageIndex() {
   })
   }
   
+  //Requête et affichage météo
   const ville = "Biscarrosse"
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${ville}&appid=22432402c2786a96615d7d83baadf410&units=metric&lang=fr`;
 
