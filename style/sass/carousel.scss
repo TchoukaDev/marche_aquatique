@@ -1,0 +1,87 @@
+@use "variables" as *;
+
+.carousel-container {
+  position: relative;
+  width: 800px;
+  max-width: 95%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  margin: 50px auto;
+
+  display: flex;
+  background-color: $couleur2;
+  border: 1px, solid, $couleur3;
+  border-radius: 30px;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.slide.current {
+  opacity: 1;
+}
+
+.slide img {
+  width: auto;
+  height: 100%;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px;
+  background-color: transparent;
+  color: $couleur4;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.slide-progress {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.slide-progress .dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: $couleur4;
+  cursor: pointer;
+}
+
+.slide-progress .dot.current {
+  background-color: $couleur1;
+}
