@@ -23,7 +23,7 @@ formulaire.addEventListener("submit", (e) => {
     erreur.textContent =
       "Veuillez renseigner votre adresse mail ou numéro de téléphone";
     erreur.style.color = "red";
-    erreur_formulaire.appendChild(error);
+    erreur_formulaire.appendChild(erreur);
   } else if (!choix_mail.checked && !choix_telephone.checked) {
     let erreur_choix = document.createElement("div");
     erreur_choix.textContent = "Veuillez choisir un moyen de contact:";

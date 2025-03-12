@@ -1,6 +1,6 @@
 <footer>
     <div class="infos_flex">
-        <span class="contact"><a href="contact.html">Contact</a></span> <!--Quand formulaire sera prêt -->
+        <span class="contact"><a href="contact.php">Contact</a></span> <!--Quand formulaire sera prêt -->
         <!-- <span class="contact"><a href="mailto:alain.mumu@orange.fr">Contact</a></span> -->
         <span>Informations légales</span>
         <span>Politique de confidentialité</span>
