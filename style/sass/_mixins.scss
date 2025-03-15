@@ -1,0 +1,28 @@
+@mixin flexbox($flexdirection, $justifycontent, $aligneitems: center) {
+  display: flex;
+  flex-direction: $flexdirection;
+  justify-content: $justifycontent;
+  align-items: $aligneitems;
+}
+
+@mixin couleurs($background, $texte: black) {
+  background: $background;
+  color: $texte;
+}
+
+@mixin boxShadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin font($police, $weight, $size) {
+  font-family: $police;
+  font-weight: $weight;
+  font-size: $size;
+}
+
+@mixin border($border, $radius) {
+  border: $border;
+  border-radius: $radius;
+}

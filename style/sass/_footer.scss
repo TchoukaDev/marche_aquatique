@@ -1,0 +1,36 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+footer {
+  @include flexbox(row, center, space-evenly);
+  @include couleurs(linear-gradient(45deg, $couleur3, $couleur2));
+  padding: 40px;
+  font-weight: bold;
+
+  .container_liens {
+    padding: 10px;
+    margin-left: 15px;
+  }
+
+  .references {
+    @include flexbox(row, space-evenly, start);
+  }
+
+  .liens_a {
+    @include flexbox(column, start, start);
+    margin-top: 15px;
+    font-size: 0.8em;
+    font-weight: initial;
+  }
+
+  .infos_flex {
+    @include flexbox(column, start, start);
+    gap: 20px;
+    margin-right: 70px;
+    padding: 10px;
+  }
+  a:hover {
+    color: $couleur4;
+    font-weight: bold;
+  }
+}

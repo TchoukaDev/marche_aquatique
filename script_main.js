@@ -16,14 +16,6 @@ function initialiserToggleNavbar() {
   }
 }
 
-// Charge le footer de manière asynchrone
-// Simple fetch sans cache contrairement à la navbar
-fetch("footer.html")
-  .then((response) => response.text())
-  .then((data) => {
-    document.getElementById("footer").innerHTML = data;
-  });
-
 // Gestion des animations de texte défilant
 // Stockage des positions et timestamps pour chaque conteneur
 const positions = {};
@@ -304,6 +296,8 @@ function carousel() {
     changeSlide(1);
   });
 }
+
+initialiserToggleNavbar();
 
 // Système de routage simple basé sur l'URL
 // Appelle la fonction d'initialisation appropriée selon la page courante

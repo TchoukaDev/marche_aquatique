@@ -1,0 +1,102 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+/* Style général du header */
+header {
+  @include flexbox(row, space-around, center);
+  @include couleurs(linear-gradient(45deg, $couleur3, $couleur2), $couleur1);
+  padding: 20px;
+
+  /* Logos */
+  img {
+    width: auto;
+    height: 120px;
+    border-radius: 50%;
+  }
+}
+
+.logos {
+  @include flexbox(row, space-between, center);
+  gap: 15px;
+}
+
+/* Titre */
+.titre {
+  @include font($pacifico, bold, 2.5rem);
+}
+
+/* navbar */
+
+nav {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+.navbar {
+  @include boxShadow(0px 3px 10px 0px rgba(65, 201, 226, 0.75));
+  @include couleurs($couleur1, $couleur3);
+  transition: background-color 0.1s ease-in;
+
+  #navbar {
+    @include flexbox(row, center, center);
+    gap: 40px;
+
+    a {
+      @include font($pacifico, normal, 1.2rem);
+      padding: 10px 20px;
+      text-align: center;
+
+      &.active {
+        color: $couleur4;
+      }
+
+      &:hover {
+        @include couleurs($couleur3, $couleur1);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  #toggle_navbar {
+    @include border(1px solid $couleur4, 5px);
+    display: none;
+    margin: 10px 20px;
+    padding: 5px;
+    width: 50px;
+    color: $couleur4;
+    transition: color 0.2s ease-in;
+  }
+
+  #toggle_navbar:hover {
+    @include couleurs($couleur4, $couleur1);
+    font-weight: bold;
+  }
+}
+//Formulaire de connexion
+.container_connexion {
+  @include border(2px solid $couleur3, 5px);
+  padding: 10px;
+  text-align: center;
+  color: black;
+  .titre_connexion {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  form {
+    text-align: right;
+  }
+  p {
+    margin: 0 auto 10px auto;
+  }
+  .lien_inscription {
+    font-size: 0.8rem;
+    a {
+      text-decoration: underline;
+      color: $couleur4;
+      transition: color 0.2s ease-in-out;
+      &:hover {
+        color: $couleur1;
+      }
+    }
+  }
+}
