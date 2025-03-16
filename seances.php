@@ -11,8 +11,8 @@
 
 <body>
   <?php
-  require_once 'src/header.php';
-  require_once "src/navbar.php"
+  require_once 'src/modules/header.php';
+  require_once "src/modules/navbar.php"
   ?>
 
   <main>
@@ -136,26 +136,26 @@
         </div>
         <div class="sites">
           - Plage de Maguide<br />
-          <a href="sources/assets/maguide.pdf" target="_blank"><img src="images/maguide_1.jpg" type="image/jpg"
+          <a href="src/assets/maguide.pdf" target="_blank"><img src="images/maguide_1.jpg" type="image/jpg"
               alt="Site de Maguide" width="400px" /></a><br />
           - Plage de Port Boissou/Maguide<br />
-          <a href="sources/assets/maguide_bouissou.pdf" target="_blank"><img src="images/maguide_bouissou_1.jpg"
+          <a href="src/assets/maguide_bouissou.pdf" target="_blank"><img src="images/maguide_bouissou_1.jpg"
               type="image/jpg" alt="Site de Maguide/Bouissou" width="400px" /></a><br />
           - Plage de Navarosse<br />
-          <a href="sources/assets/navarrosse.pdf" target="_blank"><img src="images/navarrosse_1.jpg" type="image/jpg"
+          <a href="src/assets/navarrosse.pdf" target="_blank"><img src="images/navarrosse_1.jpg" type="image/jpg"
               alt="Site de Navarrosse" width="400px" /></a><br />
           - Plage Piaou, Lac de Parentis-en-Born<br />
-          <a href="sources/assets/parentis.pdf" target="_blank"><img src="images/parentis_1.jpg" type="image/jpg"
+          <a href="src/assets/parentis.pdf" target="_blank"><img src="images/parentis_1.jpg" type="image/jpg"
               alt="Site de Parentis" width="400px" /></a><br />
           - Plage de Caton, Sanguinet<br />
-          <a href="sources/assets/" target="_blank"><img src="images/sanguinet_1.jpg" type="image/jpg"
+          <a href="src/assets/" target="_blank"><img src="images/sanguinet_1.jpg" type="image/jpg"
               alt="Site de Sanguinet" width="400px" /></a><br />
         </div>
       </section>
     </div>
   </main>
 
-  <?php require_once("src/footer.php") ?>
+  <?php require_once("src/modules/footer.php") ?>
 
   <script src="script_main.js"></script>
 </body>

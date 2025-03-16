@@ -11,8 +11,8 @@
 
 <body>
   <?php
-  require_once 'src/header.php';
-  require_once "src/navbar.php"
+  require_once 'src/modules/header.php';
+  require_once "src/modules/navbar.php"
   ?>
 
   <main>

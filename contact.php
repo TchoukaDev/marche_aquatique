@@ -11,8 +11,8 @@
 
 <body id="flex_body_accueil">
     <?php
-    require_once 'src/header.php';
-    require_once "src/navbar.php"
+    require_once 'src/modules/header.php';
+    require_once "src/modules/navbar.php"
     ?>
 
     <form method="POST" action="traitement_contact.php" id="contact_formulaire" class="contact form_container text_center">
@@ -32,7 +32,7 @@
             <label for="mail">Adresse mail: </label>
             <input type="email" name="mail" id="mail" placeholder="Votre adresse email">
             <label for="telephone">Numéro de téléphone: </label>
-            <input type="number" name="telephone" id="telephone" placeholder="Votre n° de téléphone">
+            <input type="tel" name="telephone" id="telephone" placeholder="Votre n° de téléphone">
         </p>
         <div id="erreur_choix_formulaire"></div>
         <p>
@@ -54,6 +54,11 @@
         </p>
         </div>
     </form>
+
+    <?php
+    require_once 'src/modules/footer.php';
+    ?>
+
     <script src="script_main.js"></script>
     <script src="script_contact.js"></script>
 </body>

@@ -11,8 +11,8 @@
 
 <body>
   <?php
-  require_once 'src/header.php';
-  require_once "src/navbar.php"
+  require_once 'src/modules/header.php';
+  require_once "src/modules/navbar.php"
   ?>
 
   <main>
@@ -64,7 +64,7 @@
       </section>
     </div>
   </main>
-  <?php require_once("src/footer.php") ?>
+  <?php require_once("src/modules/footer.php") ?>
 
   <script src="script_main.js"></script>
 </body>
