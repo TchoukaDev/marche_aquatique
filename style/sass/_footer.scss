@@ -7,6 +7,10 @@ footer {
   padding: 40px;
   font-weight: bold;
 
+  @include respond-to("medium") {
+    @include flexbox(column, space-evenly, center);
+  }
+
   .container_liens {
     padding: 10px;
     margin-left: 15px;
@@ -14,6 +18,11 @@ footer {
 
   .references {
     @include flexbox(row, space-evenly, start);
+
+    @include respond-to("medium") {
+      @include flexbox(column, space-evenly, start);
+      margin-top: 20px;
+    }
   }
 
   .liens_a {

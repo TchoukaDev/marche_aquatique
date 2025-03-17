@@ -94,23 +94,23 @@ if ($formulaireValide) {
 
         <p>
             <label for="forename">Prénom: </label>
-            <input type="text" name="forename" id="forename" placeholder="Votre prénom" required>
+            <input type="text" name="forename" id="forename" placeholder="Votre prénom" autocomplete="given-name" required>
             <label for="name">Nom de famille: </label>
-            <input type="text" name="name" id="name" placeholder="Votre nom" required>
+            <input type="text" name="name" id="name" placeholder="Votre nom" autocomplete="family-name" required>
         </p>
         <p>
             <label for="email">Adresse mail: </label>
-            <input type="email" name="email" id="email" placeholder="Votre adresse email">
+            <input type="email" name="email" id="email" placeholder="Votre adresse email" autocomplete="email" required>
         </p>
         <label for="telephone">Téléphone</label>
-        <input type="tel" name="telephone" id="telephone" required placeholder="Votre n° de téléphone">
+        <input type="tel" name="telephone" id="telephone" required placeholder="Votre n° de téléphone" autocomplete="tel" required>
         <p>
             <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" required placeholder="Votre mot de passe">
+            <input type="password" name="password" id="password" required placeholder="Votre mot de passe" autocomplete="new-password" required>
         </p>
         <p>
             <label for="check_password">Saisissez à nouveau votre mot de passe</label>
-            <input type="password" name="check_password" id="check_password" required placeholder="Votre mot de passe">
+            <input type="password" name="check_password" id="check_password" required placeholder="Votre mot de passe" required>
         </p>
 
         <p>

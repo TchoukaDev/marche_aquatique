@@ -76,7 +76,7 @@
     </div>
   </main>
 
-  <?php require_once("src/footer.php") ?>
+  <?php require_once("src/modules/footer.php") ?>
 
   <script src="script_main.js"></script>
 </body>

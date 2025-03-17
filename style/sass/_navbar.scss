@@ -1,0 +1,68 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+nav {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+.navbar {
+  @include boxShadow(0px 3px 10px 0px rgba(65, 201, 226, 0.75));
+  @include couleurs($couleur1, $couleur3);
+  transition: background-color 0.1s ease-in;
+
+  #navbar {
+    @include flexbox(row, center, center);
+    gap: 40px;
+
+    @include respond-to("xxlarge") {
+      gap: 5px;
+    }
+
+    @include respond-to("medium") {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    a {
+      @include font($pacifico, normal, 1.2rem);
+      padding: 10px 20px;
+      text-align: center;
+
+      @include respond-to("xlarge") {
+        font-size: 0.9rem;
+      }
+
+      &.active {
+        color: $couleur4;
+      }
+
+      &:hover {
+        @include couleurs($couleur3, $couleur1);
+        border-radius: 50%;
+      }
+    }
+  }
+
+  #toggle_navbar {
+    @include border(1px solid $couleur4, 5px);
+    display: none;
+    margin: 10px 20px;
+    padding: 5px;
+    width: 50px;
+    color: $couleur4;
+    transition: color 0.2s ease-in;
+
+    @include respond-to("medium") {
+      display: block !important;
+    }
+  }
+
+  #toggle_navbar:hover {
+    @include couleurs($couleur4, $couleur1);
+    font-weight: bold;
+  }
+}

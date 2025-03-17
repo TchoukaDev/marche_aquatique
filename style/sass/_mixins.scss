@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 @mixin flexbox($flexdirection, $justifycontent, $aligneitems: center) {
   display: flex;
   flex-direction: $flexdirection;
@@ -25,4 +27,14 @@
 @mixin border($border, $radius) {
   border: $border;
   border-radius: $radius;
+}
+
+@mixin respond-to($size) {
+  @if map-has-key($breakpoints, $size) {
+    @media screen and (max-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$size}' non trouvé dans $breakpoints.";
+  }
 }

@@ -1,6 +1,6 @@
 <?php
 //Récupérer le nom de la page actuelle
-$pageActuelle = basename($_SERVER['PHP_SELF']);
+$pageActuelle = isset($_SERVER['PHP_SELF']) ? basename($_SERVER['PHP_SELF']) : 'index.php';
 ?>
 
 
