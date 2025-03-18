@@ -304,7 +304,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Système de routage simple basé sur l'URL
   // Appelle la fonction d'initialisation appropriée selon la page courante
-  if (window.location.href.includes("index")) {
+  if (
+    window.location.href.includes("index") ||
+    window.location.href.endsWith("marcheaquatique/")
+  ) {
     pageIndex();
   } else if (window.location.href.includes("presentation")) {
     pagePresentation();
