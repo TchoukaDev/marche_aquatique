@@ -7,9 +7,9 @@ header {
   @include couleurs(linear-gradient(45deg, $couleur3, $couleur2), $couleur1);
   padding: 20px;
 
-  @include respond-to("medium") {
+  @include respond-to("xlarge") {
     @include flexbox(column, center, center);
-    gap: 10px;
+    gap: 20px;
   }
 
   /* Logos */
@@ -40,18 +40,22 @@ header {
 //Formulaire de connexion
 .container_connexion {
   @include border(2px solid $couleur3, 5px);
-  padding: 10px;
-  text-align: center;
+  padding: 5px;
   color: black;
+
   .titre_connexion {
     font-weight: bold;
     text-decoration: underline;
   }
-  form {
-    text-align: right;
-  }
   p {
     margin: 0 auto 10px auto;
+    text-align: center;
+    input {
+      width: 90%;
+      &::placeholder {
+        color: black;
+      }
+    }
   }
   .lien_inscription {
     font-size: 0.8rem;

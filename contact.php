@@ -15,25 +15,34 @@
     require_once "src/modules/navbar.php"
     ?>
 
-    <form method="POST" action="traitement_contact.php" id="contact_formulaire" class="contact form_container text_center">
+    <form method="POST" action="traitement_contact.php" id="contact_formulaire" class="contact container_principal">
         <h2>Contactez-nous</h2>
 
-        <h3>
+        <p class="intro_contact">
             Si vous avez une question ou besoin d'une information, vous pouvez nous contacter via le formulaire suivant:
-        </h3>
-        <p>
-            <label for="nom">Nom: </label>
-            <input type="text" name="nom" id="nom" placeholder="Votre nom" required>
-            <label for="prenom">Prénom: </label>
-            <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required></br>
         </p>
+
+        <div class="grid grid_contact">
+            <p>
+                <label for="nom">Nom: </label>
+                <input type="text" name="nom" id="nom" placeholder="Votre nom" required class="input_block">
+            </p>
+            <p>
+                <label for="prenom">Prénom: </label>
+                <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required class="input_block">
+            </p>
+        </div>
         <div id="erreur_formulaire"></div>
-        <p>
-            <label for="mail">Adresse mail: </label>
-            <input type="email" name="mail" id="mail" placeholder="Votre adresse email">
-            <label for="telephone">Numéro de téléphone: </label>
-            <input type="tel" name="telephone" id="telephone" placeholder="Votre n° de téléphone">
-        </p>
+        <div class="grid grid_contact">
+            <p>
+                <label for="mail">Adresse mail: </label>
+                <input type="email" name="mail" id="mail" placeholder="Votre adresse email" class="input_block">
+            </p>
+            <p>
+                <label for="telephone">Numéro de téléphone: </label>
+                <input type="tel" name="telephone" id="telephone" placeholder="Votre n° de téléphone" class="input_block">
+            </p>
+        </div>
         <div id="erreur_choix_formulaire"></div>
         <p>
             Vous préférez être contacté par:
@@ -47,10 +56,10 @@
             Message:
         </p>
         <p>
-            <textarea class="padding10" name="message_contact" id="message_contact" placeholder="Ecrivez votre demande" rows="20" cols="100"></textarea>
+            <textarea class="padding10" name="message_contact" id="message_contact" placeholder="Ecrivez votre demande"></textarea>
         </p>
         <p>
-            <input type="submit" value="Envoyer">
+            <input type="submit" value="Envoyer" class="bouton">
         </p>
         </div>
     </form>

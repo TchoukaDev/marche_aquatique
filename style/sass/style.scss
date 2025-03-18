@@ -4,6 +4,7 @@
 @use "footer";
 @use "carousel";
 @use "navbar";
+@use "formulaires";
 
 @font-face {
   font-family: "ocean";
@@ -78,6 +79,21 @@ h3 {
   padding: 10px;
 }
 
+.bouton {
+  @include border(1px solid black, 5px);
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border 0.2s ease-in-out;
+
+  &:hover {
+    @include border(1px solid $couleur1, 5px);
+    background-color: $couleur4;
+    color: $couleur1;
+  }
+  &:active {
+    box-shadow: inset 3px 3px 10px 1px rgba(black, 0.75);
+  }
+}
+
 /* Container principaux du texte */
 .container_principal {
   @include flexbox(column, center, center);
@@ -96,6 +112,7 @@ h3 {
   }
   @include respond-to("medium") {
     width: 400px;
+    padding: 10px;
   }
 
   @include respond-to("small") {
@@ -118,6 +135,10 @@ h3 {
 .container_img_background {
   flex-grow: 1;
   min-height: 80vh;
+
+  @include respond-to("medium") {
+    min-height: 50vh;
+  }
 }
 
 .date {
@@ -147,6 +168,10 @@ h3 {
   grid-row: 1;
   margin-top: 5%;
   margin-left: 5%;
+
+  @include respond-to("medium") {
+    margin: 5% auto;
+  }
 }
 
 .spinner {
@@ -227,6 +252,7 @@ h3 {
     width: auto;
     height: 40px;
     vertical-align: middle;
+    transition: transform 0.2s ease-in-out;
 
     &:hover {
       transform: scale(1.1);
@@ -349,7 +375,7 @@ th {
 
   img {
     margin: 25px auto;
-    transition: 0.3s;
+    transition: transform 0.2s ease-in-out;
 
     &:hover {
       animation: zoom 1.2s linear infinite;
@@ -364,47 +390,4 @@ th {
   100% {
     transform: scale(1);
   }
-}
-
-/* style du footer */
-
-/* Formulaire */
-form .contact {
-  h2 {
-    margin-bottom: 40px;
-  }
-
-  h3 {
-    margin-bottom: 30px;
-  }
-}
-
-input {
-  @include couleurs($couleur1);
-  @include border(none, 5px);
-  padding: 5px;
-  .contact {
-    margin-bottom: 20px;
-  }
-}
-
-textarea {
-  @include border(none, 10px);
-}
-
-label {
-  margin-left: 20px;
-  margin-right: 5px;
-}
-
-.form_container {
-  @include couleurs(linear-gradient(45deg, $couleur3, $couleur1));
-  @include border(none, 15px);
-  width: 1100px;
-  margin: 50px auto;
-  padding: 20px;
-}
-
-.container_meteo {
-  margin: 5% auto;
 }

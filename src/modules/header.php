@@ -11,12 +11,13 @@
         <p class="text_center titre_connexion">Connexion</p>
         <form action="connexion.php" method="post" class=form_connexion>
             <p>
-                <label for="email">Email </label>
-                <input type=text name="email" id="email" autocomplete="email" required>
+                <input type=text name="email" id="email" placeholder="Email" autocomplete="email" class="input" required aria-label="email">
             </p>
             <p>
-                <label for='motDePasse'>Mot de passe: </label>
-                <input type="password" name="password" id="password" autocomplete="current-password" required>
+                <input type="password" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" class="input" required aria-label="mot de passe">
+            </p>
+            <p>
+                <input type="submit" value="Se connecter" class="bouton">
             </p>
         </form>
         <p class=lien_inscription>Pas encore inscrit? <a class="inscription" href="inscription.php">Inscrivez-vous</a></p>

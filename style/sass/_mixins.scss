@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "breakpoints" as *;
 
 @mixin flexbox($flexdirection, $justifycontent, $aligneitems: center) {
   display: flex;

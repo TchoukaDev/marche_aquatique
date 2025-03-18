@@ -89,32 +89,43 @@ if ($formulaireValide) {
     require_once "src/modules/navbar.php";
     ?>
 
-    <form method="POST" action="inscription.php" class="contact form_container text_center">
+    <form method="POST" action="inscription.php" class="container_principal text_center">
         <h2>Inscription</h2>
 
-        <p>
-            <label for="forename">Prénom: </label>
-            <input type="text" name="forename" id="forename" placeholder="Votre prénom" autocomplete="given-name" required>
-            <label for="name">Nom de famille: </label>
-            <input type="text" name="name" id="name" placeholder="Votre nom" autocomplete="family-name" required>
-        </p>
-        <p>
-            <label for="email">Adresse mail: </label>
-            <input type="email" name="email" id="email" placeholder="Votre adresse email" autocomplete="email" required>
-        </p>
-        <label for="telephone">Téléphone</label>
-        <input type="tel" name="telephone" id="telephone" required placeholder="Votre n° de téléphone" autocomplete="tel" required>
-        <p>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" required placeholder="Votre mot de passe" autocomplete="new-password" required>
-        </p>
-        <p>
-            <label for="check_password">Saisissez à nouveau votre mot de passe</label>
-            <input type="password" name="check_password" id="check_password" required placeholder="Votre mot de passe" required>
-        </p>
+        <div class="grid grid_inscription">
+            <p>
+                <label for="forename">Prénom: </label><br>
+                <input type="text" name="forename" id="forename" placeholder="Votre prénom" autocomplete="given-name" required class="input_block">
+            </p>
+            <p>
+                <label for="name">Nom de famille: </label><br>
+                <input type="text" name="name" id="name" placeholder="Votre nom" autocomplete="family-name" required class="input_block">
 
+            </p>
+        </div>
+        <div class="grid grid_inscription">
+            <p>
+                <label for="email">Adresse mail: </label><br>
+                <input type="email" name="email" id="email_inscription" placeholder="Votre adresse email" autocomplete="email" required class="input_block">
+            </p>
+            <p>
+                <label for="telephone">Téléphone: </label><br>
+                <input type="tel" name="telephone" id="telephone" placeholder="Votre n° de téléphone" autocomplete="tel" required class="input_block">
+            </p>
+        </div>
+        <div class="grid grid_inscription">
+            <p>
+                <label for="password">Mot de passe: </label><br>
+                <input type="password" name="password" id="password_inscription" placeholder="Votre mot de passe" autocomplete="new-password" required class="input_block">
+            </p>
+
+            <p>
+                <label for="check_password">Saisissez à nouveau votre mot de passe: </label><br>
+                <input type="password" name="check_password" id="check_password" placeholder="Votre mot de passe" required class="input_block">
+            </p>
+        </div>
         <p>
-            <input type="submit" value="Envoyer">
+            <input type="submit" value="Envoyer" class="bouton">
         </p>
 
         <?php

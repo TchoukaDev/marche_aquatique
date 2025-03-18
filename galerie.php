@@ -17,8 +17,8 @@
 
   <main>
     <div class="container_img_background container_principal">
-      <section>
-        <h2>Galerie Photo</h2>
+      <section class="carousel">
+        <h2>Galerie Photos</h2>
         <div class="carousel-container">
           <div class="slide">
             <img src="images/carousel1.jpg" alt="slide 1" />
