@@ -94,6 +94,20 @@ h3 {
   }
 }
 
+.alert {
+  font-weight: bold;
+  padding: 10px;
+  width: auto;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
 /* Container principaux du texte */
 .container_principal {
   @include flexbox(column, center, center);

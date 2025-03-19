@@ -27,18 +27,18 @@ if ($formulaireValide) {
     require_once 'src/modules/bdd.php';
 
     if ($password !== $checkPassword) {
-        header('location: inscription.php?error=true&message=Les deux mots de passe saisis ne sont pas identiques.');
+        header('location: inscription.php?errorsubscribe=true&message=Les deux mots de passe saisis ne sont pas identiques.');
         exit();
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: inscription.php?error=true&message=Votre adresse email n\'est pas valide.');
+        header('location: inscription.php?errorsubscribe=true&message=Votre adresse email n\'est pas valide.');
         exit();
     }
 
     $regex = '/^(\+33\s*|0)[1-9]\s*[0-9]{2}(\s*[0-9]{2}){3}\s*$/';
     if (!filter_var($telephone, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => $regex]])) {
-        header('location: inscription.php?error=true&message=Le numéro de téléphone n\'est pas valide.');
+        header('location: inscription.php?errorsubscribe=true&message=Le numéro de téléphone n\'est pas valide.');
         exit();
     }
 
@@ -46,16 +46,9 @@ if ($formulaireValide) {
     $req->execute([$email]);
 
     $resultat = $req->fetchColumn();
-    // // echo "<pre>";
-    // // var_dump([
-    // //     'email' => $email,
-    // //     'count' => $resultat,
-    // //     'type' => gettype($resultat)
-    // // ]);
-    // // echo "</pre>";
-    // exit();
+
     if ($resultat > 0) {
-        header('location: inscription.php?error=true&message=Cette adresse email est déjà utilisée.');
+        header('location: inscription.php?errorsubscribe=true&message=Cette adresse email est déjà utilisée.');
         exit();
     }
 
@@ -65,7 +58,8 @@ if ($formulaireValide) {
 
     $ajoutUser = $bdd->prepare('INSERT INTO users(name, forename, email, telephone, password, cookie) VALUES(?,?,?,?,?,?)');
     $ajoutUser->execute([$name, $forename, $email, $telephone, $password, $cookie]);
-    header('location: inscription.php?success=true');
+    header('location: inscription.php?successsubscribe=true');
+    exit();
 }
 
 
@@ -129,10 +123,10 @@ if ($formulaireValide) {
         </p>
 
         <?php
-        if (isset($_GET['error']) && isset($_GET['message'])) {
-            echo '<p class= alert error>' . htmlspecialchars($_GET['message']) . '</p>';
-        } else if (isset($_GET['success'])) {
-            echo '<p class= alert success> Votre inscription est validée. Vous pouvez maintenant vous connecter.</p>';
+        if (isset($_GET['errorsubscribe']) && isset($_GET['message'])) {
+            echo '<p class= "alert error">' . htmlspecialchars($_GET['message']) . '</p>';
+        } else if (isset($_GET['successsubscribe'])) {
+            echo '<p class= "alert success"> Votre inscription est validée. Vous pouvez maintenant vous connecter.</p>';
         }
         ?>
 

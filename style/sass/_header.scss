@@ -39,7 +39,7 @@ header {
 
 //Formulaire de connexion
 .container_connexion {
-  @include border(2px solid $couleur3, 5px);
+  @include border(none solid $couleur1, 5px);
   padding: 5px;
   color: black;
 
@@ -56,7 +56,19 @@ header {
         color: black;
       }
     }
+    #autoconnect {
+      width: fit-content;
+    }
+    span {
+      @include flexbox(row, center, center);
+    }
   }
+
+  .autoconnect {
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }
+
   .lien_inscription {
     font-size: 0.8rem;
     a {
@@ -67,5 +79,16 @@ header {
         color: $couleur1;
       }
     }
+  }
+
+  .bonjour_connexion {
+    color: $couleur4;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .bouton_deconnexion {
+    display: flex;
+    justify-content: center;
   }
 }
