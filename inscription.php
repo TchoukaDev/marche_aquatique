@@ -27,18 +27,21 @@ if ($formulaireValide) {
     require_once 'src/modules/bdd.php';
 
     if ($password !== $checkPassword) {
-        header('location: inscription.php?errorsubscribe=true&message=Les deux mots de passe saisis ne sont pas identiques.');
+        $_SESSION['errorSubscribe'] = 'Les deux mots de passe saisis ne sont pas identiques.';
+        header('location: inscription.php');
         exit();
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: inscription.php?errorsubscribe=true&message=Votre adresse email n\'est pas valide.');
+        $_SESSION['errorSubscribe'] = 'Cette adresse email n\'est pas valide.';
+        header('location: inscription.php');
         exit();
     }
 
     $regex = '/^(\+33\s*|0)[1-9]\s*[0-9]{2}(\s*[0-9]{2}){3}\s*$/';
     if (!filter_var($telephone, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => $regex]])) {
-        header('location: inscription.php?errorsubscribe=true&message=Le numéro de téléphone n\'est pas valide.');
+        $_SESSION['errorSubscribe'] = 'Ce numéro de téléphone n\'est pas valide.';
+        header('location: inscription.php');
         exit();
     }
 
@@ -48,7 +51,8 @@ if ($formulaireValide) {
     $resultat = $req->fetchColumn();
 
     if ($resultat > 0) {
-        header('location: inscription.php?errorsubscribe=true&message=Cette adresse email est déjà utilisée.');
+        $_SESSION['errorSubscribe'] = 'Cette adresse email est déjà utilisée.';
+        header('location: inscription.php');
         exit();
     }
 
@@ -58,7 +62,8 @@ if ($formulaireValide) {
 
     $ajoutUser = $bdd->prepare('INSERT INTO users(name, forename, email, telephone, password, cookie) VALUES(?,?,?,?,?,?)');
     $ajoutUser->execute([$name, $forename, $email, $telephone, $password, $cookie]);
-    header('location: inscription.php?successsubscribe=true');
+    $_SESSION['successSubscribe'] = 'Votre inscription est validée. Vous pouvez maintenant vous connecter.';
+    header('location: inscription.php');
     exit();
 }
 
@@ -123,16 +128,16 @@ if ($formulaireValide) {
         </p>
 
         <?php
-        if (isset($_GET['errorsubscribe']) && isset($_GET['message'])) {
-            echo '<p class= "alert error">' . htmlspecialchars($_GET['message']) . '</p>';
-        } else if (isset($_GET['successsubscribe'])) {
-            echo '<p class= "alert success"> Votre inscription est validée. Vous pouvez maintenant vous connecter.</p>';
+        if (isset($_SESSION['errorSubscribe'])) {
+            echo '<p class="error">' . htmlspecialchars($_SESSION['errorSubscribe']) . '</p>';
+            unset($_SESSION['errorSubscribe']);
+        } else if (isset($_SESSION['successSubscribe'])) {
+            echo '<p class="success">' . htmlspecialchars($_SESSION['successSubscribe']) . '</p>';
+            unset($_SESSION['successSubscribe']);
         }
         ?>
 
     </form>
-
-
 
     <?php require_once("src/modules/footer.php") ?>
 

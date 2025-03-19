@@ -23,7 +23,8 @@ if ($formulaireValide) {
     require_once('bdd.php');
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header('location: ../../index.php?errorconnect=true&message=Cette adresse mail n\'est pas valide.');
+        $_SESSION['error'] = 'Cette adresse mail n\'est pas valide';
+        header('location: ../../index.php');
         exit();
     }
 
@@ -32,7 +33,8 @@ if ($formulaireValide) {
 
     $resultat = $req->fetchColumn();
     if ($resultat != 1) {
-        header('location: ../../index.php?errorconnect=true&message= Adresse mail ou mot de passe invalide.');
+        $_SESSION['error'] = 'Adresse mail ou mot de passe invalide';
+        header('location: ../../index.php');
         exit();
     }
 
@@ -50,7 +52,8 @@ if ($formulaireValide) {
             header('location: ../../index.php');
             exit();
         } else {
-            header('location: ../../index.php?errorconnect=true&message=Adresse mail ou mot de passe invalide.');
+            $_SESSION['error'] = 'Adresse mail ou mot de passe invalide';
+            header('location: ../../index.php');
             exit();
         }
     }
