@@ -1,0 +1,17 @@
+{
+    "name": "romai/marcheaquatique",
+    "autoload": {
+        "psr-4": {
+            "Romai\\Marcheaquatique\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Romain Wirth",
+            "email": "romain.wirth@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
