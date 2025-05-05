@@ -1,71 +1,65 @@
 <?php
 
-if (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] !== 'on') {
-  header("Location: https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-  exit();
-} ?>
+session_start();
+//Définir constant ROOT qui contient la racine du site
+define('ROOT', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']));
 
-<!DOCTYPE html>
-<html lang="fr">
+require_once 'controllers/MainController.php';
+require_once 'controllers/PageController.php';
+require_once 'controllers/Utilities.php';
+require_once 'controllers/SignUpController.php';
+require_once 'controllers/LoginController.php';
+require_once 'controllers/LogoutController.php';
+$pageController = new PageController();
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style/css/style.css" />
-  <link rel="shortcut icon" href="images/favicon.jpeg" type="image/jpeg" />
-  <title>Les randonneurs des sables du Born - Accueil</title>
-</head>
-
-<body>
-
-  <?php
-  require_once 'src/modules/header.php';
-  require_once "src/modules/navbar.php";
-  ?>
-
-  <main>
-    <section>
-      <div class="container_accueil">
-        <div class="date padding10"></div>
-        <div class="container_meteo padding10">
-          <div id="spinner" class="spinner hidden"></div>
-          <div id="meteo_contenu" class="hidden">
-            <div id="ville" class="text_center pacifico"></div>
-            <div class="description_temperature_icone">
-              <div class="description_temperature">
-                <div id="description_meteo" class="text_center pacifico"></div>
-                <div id="temperature" class="text_center pacifico"></div>
-              </div>
-              <div id="container_icone_meteo"></div>
-            </div>
-          </div>
-        </div>
-        <div class="background_image"></div>
-
-        <div class="container_img_background bienvenue">
-          <span>B</span>
-          <span>i</span>
-          <span>e</span>
-          <span>n</span>
-          <span>v</span>
-          <span>e</span>
-          <span>n</span>
-          <span>u</span>
-          <span>e</span>
-        </div>
-      </div>
-    </section>
-    <section>
-      <p class="prefooter text_center">
-        Suivez-nous également sur notre page Facebook →
-        <a id="facebook" href=""><img src="images/facebook.png" type="image/png" alt="logo Facebook" /></a>
-      </p>
-    </section>
-  </main>
-
-  <?php require_once("src/modules/footer.php") ?>
-
-  <script src="script_main.js"></script>
-</body>
-
-</html>
+try {
+    if (empty($_GET['page'])) {
+        $url[0] = "accueil";
+    } else {
+        //Mettre dans un tableau les différentes parties de l'URL qui sont séparées par les /
+        $url = explode("/", filter_var($_GET['page'], FILTER_SANITIZE_URL));
+    }
+    switch ($url[0]) {
+        case "accueil":
+            $pageController->accueilPage();
+            break;
+        case "presentation":
+            $pageController->presentationPage();
+            break;
+        case "marche_aquatique":
+            $pageController->marcheAquatiquePage();
+            break;
+        case "seances":
+            $pageController->seancesPage();
+            break;
+        case "galerie":
+            $pageController->galeriePage();
+            break;
+        case 'competitions':
+            $pageController->competitionsPage();
+            break;
+        case "infos_diverses":
+            $pageController->infosPage();
+            break;
+        case "contact":
+            $pageController->contactPage();
+            break;
+        case "inscription":
+            $signUpController = new SignUpController();
+            $signUpController->signUp();
+            $pageController->inscriptionPage();
+            break;
+        case 'connexion':
+            $loginController = new LoginController();
+            $loginController->login();
+            break;
+        case 'deconnexion':
+            $logoutController = new LogoutController();
+            $logoutController->logout();
+            break;
+        default:
+            throw new Exception("La page demandée n'existe pas.");
+    }
+} catch (Exception $e) {
+    $pageController->errorPage($e->getMessage());
+}
