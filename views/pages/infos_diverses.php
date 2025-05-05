@@ -3,11 +3,11 @@
 
     <?php if (isset($_SESSION['admin'])) : ?>
         <!-- Bouton d'ajout d'article -->
-        <button type="button" class="bouton" id="addArticleBtnn">Ajouter un article</button>
+        <button type="button" class="bouton" id="addArticleBtn">Ajouter un article</button>
         <!-- Bouton de fermeture textearea -->
-        <button type="button" class="bouton" id="closeAddArticleBtn">X</button>
+        <button type="button" class="bouton hidden" id="closeAddArticleBtn">X</button>
         <!-- Formulaire d'ajout de contenu -->
-        <form id="addArticleForm">
+        <form id="addArticleForm" class="hidden">
             <p>
                 <input type="text" name="title" id="title" placeholder="Saisissez un titre..." required aria-label="article title">
             </p>

@@ -24,10 +24,13 @@
     <?php require_once "views/commons/fragments/footer.php" ?>
 
     <script src="public/js/main.js" type="module"></script>
-    <script src="public/js/textScroll.js" type="module"></script>
-    <script src="public/js/contact.js" type="module"></script>
-    <script src="public/js/utilities.js" type="module"></script>
-    <script src="public/js/tiny.js"></script>
+    <script src="public/js/Pages.js" type="module"></script>
+    <script src="public/js/Contact.js" type="module"></script>
+    <script src="public/js/Index.js" type="module"></script>
+    <script src="public/js/Galerie.js" type="module"></script>
+    <script src="public/js/TextScroll.js" type="module"></script>
+
+
 </body>
 
 </html>
