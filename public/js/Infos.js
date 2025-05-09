@@ -3,111 +3,107 @@ import { Pages } from "./Pages.js";
 export class Infos extends Pages {
   constructor() {
     super();
-    this.tiny();
-    this.OpenArticleForm();
-    this.CloseArticleForm();
-  }
+    this.addArticleBtn = document.querySelector("#addArticleBtn");
+    this.closeAddArticleBtn = document.querySelector("#closeAddArticleBtn");
+    this.addArticleForm = document.querySelector("#addArticleForm");
+    this.modals = document.querySelectorAll('[id^="modal_"]');
+    this.updateArticleBtns = document.querySelectorAll(
+      `[id^="updateArticleBtn_"]`
+    );
 
-  OpenArticleForm() {
-    const addArticleBtn = document.querySelector("#addArticleBtn");
-    const closeAddArticleBtn = document.querySelector("#closeAddArticleBtn");
-    const addArticleForm = document.querySelector("#addArticleForm");
-    addArticleBtn.addEventListener("click", () => {
-      addArticleBtn.classList.toggle("hidden");
-      addArticleForm.classList.toggle("hidden");
-      closeAddArticleBtn.classList.toggle("hidden");
+    this.modalFunction();
+    this.openArticleForm();
+    this.closeArticleForm();
+    this.toggleUpdateForm();
+  }
+  // Formulaire de création de contenu
+  openArticleForm() {
+    this.addArticleBtn.addEventListener("click", () => {
+      this.addArticleBtn.classList.toggle("hidden");
+      this.addArticleForm.classList.toggle("hidden");
+      this.closeAddArticleBtn.classList.toggle("hidden");
     });
   }
 
-  CloseArticleForm() {
-    const addArticleBtn = document.querySelector("#addArticleBtn");
-    const closeAddArticleBtn = document.querySelector("#closeAddArticleBtn");
-    const addArticleForm = document.querySelector("#addArticleForm");
-    closeAddArticleBtn.addEventListener("click", () => {
-      addArticleBtn.classList.toggle("hidden");
-      addArticleForm.classList.toggle("hidden");
-      closeAddArticleBtn.classList.toggle("hidden");
+  closeArticleForm() {
+    this.closeAddArticleBtn.addEventListener("click", () => {
+      this.addArticleBtn.classList.toggle("hidden");
+      this.addArticleForm.classList.toggle("hidden");
+      this.closeAddArticleBtn.classList.toggle("hidden");
     });
   }
 
-  tiny() {
-    tinymce.init({
-      selector: ".tiny", // Cibler la textarea avec l'ID "myTextarea"
-      plugins: "image", // Activer le plugin pour les images
-      toolbar:
-        "undo redo | bold italic | alignleft aligncenter alignright | image", // Personnaliser la barre d'outils
-      images_upload_url: "upload",
+  // Formulaire de modification de contenu
+  toggleUpdateForm() {
+    this.updateArticleBtns.forEach((updateBtn) => {
+      const articleId = updateBtn.id.split("_")[1];
+      const updateForm = document.querySelector(
+        `#updateArticleForm_${articleId}`
+      );
+      const closeUpdateBtn = document.querySelector(
+        `#closeUpdateArticleBtn_${articleId}`
+      );
 
-      // Taille maximale acceptable (en octets)
-      images_upload_max_filesize: "5mb",
+      // Ouvrir formulaire
+      updateBtn.addEventListener("click", () => {
+        updateBtn.classList.toggle("hidden");
+        updateForm.classList.toggle("hidden");
+        closeUpdateBtn.classList.toggle("hidden");
+      });
 
-      // Types d'images acceptés
-      images_upload_allowed_file_types: "jpg,jpeg,png,gif",
+      // Fermer formulaire
+      closeUpdateBtn.addEventListener("click", () => {
+        updateBtn.classList.toggle("hidden");
+        updateForm.classList.toggle("hidden");
+        closeUpdateBtn.classList.toggle("hidden");
+      });
+    });
+  }
+  // Modale de confirmation de suppression de contenu
+  modalFunction() {
+    // Fonction de fermeture accessible à tous les eventListeners
+    const closeModal = (modal) => {
+      modal.classList.remove("show");
+      setTimeout(() => {
+        if (!modal.classList.contains("show")) {
+          modal.style.display = "none";
+        }
+      }, 300);
+    };
 
-      images_upload_handler: function (blobInfo, progress) {
-        return new Promise(function (resolve, reject) {
-          // Crée la requête AJAX
-          const req = new XMLHttpRequest();
+    this.modals.forEach((modal) => {
+      const articleId = modal.getAttribute("id").split("_")[1];
 
-          // Prépare le formulaire avec le fichier à envoyer
-          const formData = new FormData();
-          formData.append("file", blobInfo.blob(), blobInfo.filename());
+      const deleteBtn = document.querySelector(
+        `#deleteArticleBtn_${articleId}`
+      );
+      const closeBtn = document.querySelector(`#closeModalBtn_${articleId}`);
+      const closeFooterBtn = document.querySelector(
+        `#closeFooterModalBtn_${articleId}`
+      );
 
-          // Ouvre une requête POST vers l'endpoint "upload"
-          req.open("POST", "upload");
+      // Ajout des event listeners
+      deleteBtn.addEventListener("click", () => {
+        modal.style.display = "flex";
+        setTimeout(() => modal.classList.add("show"), 10);
+      });
 
-          // Écoute le chargement complet (réponse du serveur)
-          req.onload = function () {
-            let json;
+      closeBtn.addEventListener("click", () => {
+        closeModal(modal);
+      });
 
-            // Vérifie le code HTTP (200 = OK)
-            if (req.status !== 200) {
-              return reject("Erreur HTTP: " + req.status);
-            }
+      closeFooterBtn.addEventListener("click", () => {
+        closeModal(modal);
+      });
 
-            try {
-              // Tente de convertir la réponse en JSON
-              json = JSON.parse(req.responseText);
-            } catch (e) {
-              return reject("Réponse invalide: " + req.responseText);
-            }
-
-            // Vérifie si l'URL de l'image est présente dans le JSON
-            if (!json || typeof json.location !== "string") {
-              return reject(
-                "Réponse invalide: manque URL dans " + req.responseText
-              );
-            }
-            //Vérifie si une erreur est envoyée depuis PHP
-            if (json.error) {
-              return reject("Erreur serveur: " + json.error); // Rejette l'erreur et affiche à l'utilisateur
-            }
-
-            // Tout est bon, on retourne l'URL
-            resolve(json.location);
-          };
-
-          // Gestion des erreurs réseau
-          req.onerror = function () {
-            reject("Erreur réseau");
-          };
-
-          // 🎯 Ajout de la gestion de la progression de l'upload
-          req.upload.onprogress = (e) => {
-            if (e.lengthComputable) {
-              // Calcul du pourcentage d'envoi
-              const percent = (e.loaded / e.total) * 100;
-              progress(percent); // 🔁 Callback fourni par TinyMCE
-            }
-          };
-
-          // Envoi de la requête avec le fichier
-          req.send(formData);
-        });
-      },
-
-      content_style:
-        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          console.log(
+            `Fermeture via clic extérieur pour l'article ${articleId}`
+          );
+          closeModal(modal);
+        }
+      });
     });
   }
 }

@@ -66,16 +66,29 @@ form {
 }
 
 // Formulaire d'ajout d'articles
-#addArticleForm {
+.ArticleForm {
   width: 100%;
   input {
-    width: 100%;
+    width: 80%;
+
+    @include respond-to(large) {
+      width: 90%;
+    }
     &.bouton {
       width: 30%;
     }
   }
 }
+.containerCloseBtn {
+  @include flexbox(column, center, end);
+  margin: auto;
+  width: 80%;
+  @include respond-to(large) {
+    width: 90%;
+  }
+}
 
-#closeAddArticleBtn {
-  align-self: flex-end;
+.articleImg {
+  margin: auto;
+  max-height: 200px;
 }

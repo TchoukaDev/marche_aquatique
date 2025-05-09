@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="public/design/css/style.css" />
     <link rel="shortcut icon" href="public/assets/images/favicon.jpeg" type="image/jpeg" />
-    <script src="https://cdn.tiny.cloud/1/t5iv00mwkwxr9bk98986eqsgfui2kpyu3b5pmj4oogs95d3g/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <title><?= $title ?></title>
 </head>
 

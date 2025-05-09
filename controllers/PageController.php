@@ -64,10 +64,13 @@ class PageController extends MainController
     }
     public function infosPage()
     {
+
         $articles = $this->articlesModel->getAllArticles();
+        require_once 'views/commons/fragments/modale.php';
         $datasPage = [
             'title' => 'Infos diverses',
             'articles' => $articles,
+            'deleteArticleModal' => $deleteArticleModal,
             'view' => 'views/pages/infos_diverses.php',
             'layout' => 'views/commons/layout.php'
         ];

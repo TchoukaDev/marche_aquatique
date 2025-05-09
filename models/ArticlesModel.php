@@ -7,17 +7,17 @@ class ArticlesModel extends PdoModel
     {
         $this->pdo = $this->setDb();
     }
-    public function addArticleDb($title, $content)
+    public function addArticleDb($title, $content, $image)
     {
 
-        $req = $this->pdo->prepare('INSERT INTO articles (title, content) VALUES (?, ?)');
-        $result = $req->execute([$title, $content]);
+        $req = $this->pdo->prepare('INSERT INTO articles (title, content, image) VALUES (?, ?, ?)');
+        $result = $req->execute([$title, $content, $image]);
         return $result;
     }
-    public function updateArticleDb($title, $content, $id)
+    public function updateArticleDb($title, $content, $image, $id)
     {
-        $req = $this->pdo->prepare('UPDATE articles SET title = ?, content = ? WHERE id= ?');
-        $result = $req->execute([$title, $content, $id]);
+        $req = $this->pdo->prepare('UPDATE articles SET title = ?, content = ?, image = ? WHERE id= ?');
+        $result = $req->execute([$title, $content, $image, $id]);
         return $result;
     }
 
