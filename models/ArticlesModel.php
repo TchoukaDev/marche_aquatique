@@ -32,7 +32,6 @@ class ArticlesModel extends PdoModel
     {
         $req = $this->pdo->prepare('SELECT * FROM articles ORDER BY creation_date DESC');
         $req->execute();
-
         $articles = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $articles;

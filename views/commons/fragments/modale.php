@@ -26,6 +26,9 @@
 
                      <form method="POST" action="infos_diverses/deleteArticle">
                          <input type="hidden" name="articleId" value="<?= $article['id'] ?>">
+                         <?php if (!empty($article['image'])): ?>
+                             <input type="hidden" name="articleImage" value="<?= $article['image'] ?>">
+                         <?php endif; ?>
                          <button type="button" id="closeFooterModalBtn_<?= $article['id'] ?>" class="bouton">Annuler</button>
                          <button type="submit" id="confirmDeleteBtn_<?= $article['id'] ?>" class="bouton">Confirmer</button>
                      </form>

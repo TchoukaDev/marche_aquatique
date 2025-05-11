@@ -46,8 +46,10 @@ class PageController extends MainController
 
     public function galeriePage()
     {
+        $images = $this->galleryModel->getAllImages();
         $datasPage = [
             'title' => 'Galerie',
+            'images' => $images,
             'view' => 'views/pages/galerie.php',
             'layout' => 'views/commons/layout.php'
         ];

@@ -11,9 +11,8 @@ class Utilities
         require $layout;
     }
 
-    public static function uploadImage($file, $error, $redirection)
+    public static function uploadImage($directory, $file, $error, $redirection)
     {
-        $directory = 'public/uploads/';
         $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         $validExtensions = ["png", "jpg", "jpeg", "gif"];
 
@@ -45,5 +44,21 @@ class Utilities
         } else {
             return $fileRenamed;
         }
+    }
+
+    public static function unlinkImage($directory, $file, $redirection)
+    {
+        if (!unlink($directory . $file)) {
+            $_SESSION['galleryError'] = "Erreur: le fichier à supprimer n'existe pas.";
+            header("location:" . ROOT . $redirection);
+            exit();
+        } else return true;
+    }
+
+    public static function showArray($array)
+    {
+        echo '<pre>';
+        print_r($array);
+        echo 'pre>';
     }
 }

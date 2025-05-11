@@ -6,6 +6,7 @@
 @use "navbar";
 @use "formulaires";
 @use "modal";
+@use "keyframes";
 
 @font-face {
   font-family: "ocean";
@@ -235,15 +236,6 @@ svg {
   margin: 50px auto; /* Centré */
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .hidden {
   display: none;
 }
@@ -435,14 +427,6 @@ th {
   }
 }
 
-@keyframes zoom {
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 // Infos diverses
 
 #addArticleBtn {
@@ -450,4 +434,10 @@ th {
 }
 .articleHeader {
   @include flexbox(row, space-between, center);
+}
+
+//Galerie
+.imagesCheckbox {
+  @include flexbox(column, space-between, center);
+  height: 130px;
 }

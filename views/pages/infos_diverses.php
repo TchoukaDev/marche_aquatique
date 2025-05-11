@@ -127,7 +127,7 @@
             <p><?= $content ?></p>
             <?php if (!empty($article['image'])) : ?>
                 <p class="text_center">
-                    <img class="articleImg" src="public/uploads/<?= $article['image'] ?>">
+                    <img class="articleImg" src="public/uploads/articles/<?= $article['image'] ?>">
                 </p>
             <?php endif;
             if ($article !== $lastArticle) : ?>

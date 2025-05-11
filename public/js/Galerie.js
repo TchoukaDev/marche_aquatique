@@ -17,7 +17,7 @@ export class Galerie extends Pages {
     function showSlide(n) {
       let currentSlide = n;
       const slides = document.querySelectorAll(".slide");
-      const dots = document.querySelectorAll(".dot");
+      const thumbnails = document.querySelectorAll(".thumbnail");
 
       if (n >= slides.length) {
         currentSlide = 0; //Si on part après la dernière slide (n = slides.length), on revient à la première slide
@@ -26,10 +26,10 @@ export class Galerie extends Pages {
       }
 
       slides.forEach((slide) => slide.classList.remove("current"));
-      dots.forEach((dot) => dot.classList.remove("current"));
+      thumbnails.forEach((thumbnail) => thumbnail.classList.remove("current"));
 
       slides[currentSlide].classList.add("current");
-      dots[currentSlide].classList.add("current");
+      thumbnails[currentSlide].classList.add("current");
 
       slideIndex = currentSlide; //à chaque affichage de slide, on met à jour l'index de la slide affichée
     }
@@ -38,20 +38,20 @@ export class Galerie extends Pages {
       changeSlide(1);
     }, 5000);
 
-    const carouselContainer = document.querySelector(".carousel-container");
+    const thumbnails = document.querySelectorAll(".thumbnail");
 
-    carouselContainer.addEventListener("mouseenter", () => {
-      clearInterval(interval);
-    });
+    thumbnails.forEach((thumbnail, i) => {
+      thumbnail.addEventListener("mouseenter", () => {
+        clearInterval(interval);
+      });
 
-    carouselContainer.addEventListener("mouseleave", () => {
-      interval = setInterval(() => {
-        changeSlide(1);
-      }, 3000);
-    });
+      thumbnail.addEventListener("mouseleave", () => {
+        interval = setInterval(() => {
+          changeSlide(1);
+        }, 5000);
+      });
 
-    document.querySelectorAll(".dot").forEach((dot, i) => {
-      dot.addEventListener("click", () => {
+      thumbnail.addEventListener("click", () => {
         showSlide(i);
       });
     });

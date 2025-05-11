@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins" as *;
+@use "keyframes";
 
 .carousel {
   width: 100%;
@@ -55,6 +56,9 @@
   background-color: transparent;
   color: $couleur4;
   cursor: pointer;
+  &:hover {
+    color: $couleur1;
+  }
 }
 
 .prev {
@@ -66,28 +70,29 @@
 }
 
 .slide-progress {
+  margin: auto;
   display: flex;
   justify-content: center;
-  gap: 10px;
-
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
+  gap: 50px;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
-.slide-progress .dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: $couleur4;
+.slide-progress .thumbnail {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
   cursor: pointer;
-
-  @include respond-to("medium") {
-    width: 10px;
-    height: 10px;
+  transition: transform 0.4s ease-in-out;
+  &:not(.current):hover {
+    animation: zoom 1.2s linear infinite;
   }
 }
 
-.slide-progress .dot.current {
-  background-color: $couleur1;
+.slide-progress .thumbnail.current {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 3px 2px $couleur4;
 }

@@ -6,6 +6,7 @@ define('ROOT', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" 
 
 require_once 'controllers/MainController.php';
 require_once 'controllers/PageController.php';
+require_once 'controllers/GalleryController.php';
 require_once 'controllers/ArticlesController.php';
 require_once 'controllers/Utilities.php';
 require_once 'controllers/SignUpController.php';
@@ -34,7 +35,19 @@ try {
             $pageController->seancesPage();
             break;
         case "galerie":
-            $pageController->galeriePage();
+            $galerieController = new GalleryController();
+            if (isset($url[1])) {
+                switch ($url[1]) {
+                    case "addImage":
+                        $galerieController->addImage();
+                        break;
+                    case "deleteImage":
+                        $galerieController->deleteImage();
+                        break;
+                    default:
+                        $pageController->galeriePage();
+                }
+            } else $pageController->galeriePage();
             break;
         case 'competitions':
             $pageController->competitionsPage();
@@ -51,11 +64,11 @@ try {
                         break;
                     case "deleteArticle":
                         $articlesController->deleteArticle();
+                        break;
                     default:
                         $pageController->infosPage();
                 }
             } else $pageController->infosPage();
-
             break;
         case "contact":
             $pageController->contactPage();

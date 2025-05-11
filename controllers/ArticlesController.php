@@ -12,7 +12,7 @@ class ArticlesController extends MainController
                 $image = "";
                 if (!empty($_FILES['image']) && $_FILES['image']['error'] === 0) {
                     $file = $_FILES['image'];
-                    $image = Utilities::uploadImage($file, "articleError", "infos_diverses");
+                    $image = Utilities::uploadImage('public/uploads/articles/', $file, "articleError", "infos_diverses");
                 };
 
                 $result = $this->articlesModel->addArticleDb($title, $content, $image);
@@ -49,7 +49,7 @@ class ArticlesController extends MainController
                 $id = htmlspecialchars($_POST['articleId']);
                 if (!empty($_FILES['image']) && $_FILES['image']['error'] === 0) {
                     $file = $_FILES['image'];
-                    $image = Utilities::uploadImage($file, "articleError", "infos_diverses");
+                    $image = Utilities::uploadImage('public/uploads/articles', $file, "articleError", "infos_diverses");
                 } else $image = '';
 
                 $result = $this->articlesModel->updateArticleDb($title, $content, $image, $id);
@@ -75,7 +75,10 @@ class ArticlesController extends MainController
             }
 
             $id = htmlspecialchars($_POST['articleId']);
-
+            if (!empty($_POST['articleImage'])) {
+                $image = htmlspecialchars($_POST['articleImage']);
+            }
+            Utilities::unlinkImage('public/uploads/articles/', $image, "infos_diverses");
             $result = $this->articlesModel->deleteArticleDb($id);
             if ($result === false) {
                 $_SESSION['articleError'] = "Erreur: votre contenu n'a pas pu être supprimé.";
