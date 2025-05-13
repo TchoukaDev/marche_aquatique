@@ -29,8 +29,8 @@ header {
   }
 
   /* Titre */
-  .titre {
-    @include font($pacifico, bold, 2.5rem);
+  h1 {
+    @include font($pacifico, normal, 2.5rem);
     @include respond-to("medium") {
       font-size: 2rem;
     }

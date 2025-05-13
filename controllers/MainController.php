@@ -27,6 +27,10 @@ class MainController
             if ($user) {
                 $_SESSION['connected'] = true;
                 $_SESSION['user'] = $user;
+
+                if ($user['isAdmin'] === 1) {
+                    $_SESSION['admin'];
+                }
             }
         }
     }

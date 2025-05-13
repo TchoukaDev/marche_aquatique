@@ -86,6 +86,9 @@ try {
             $logoutController = new LogoutController();
             $logoutController->logout();
             break;
+        case 'confidentialite':
+            $pageController->confidentialitePage();
+            break;
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

@@ -1,6 +1,6 @@
 <div class="container_img_background container_principal">
   <section>
-    <h2>la marche aquatique</h2>
+    <h2>La marche aquatique</h2>
 
     <div class="separation_bottom">
       <div id="container_marche" class="container_scroll">

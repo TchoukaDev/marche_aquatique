@@ -16,7 +16,7 @@
         <?php endif;
         ?>
 
-        <form method="POST" action='galerie/addImage' enctype="multipart/form-data">
+        <form class="adminForm" method="POST" action='galerie/addImage' enctype="multipart/form-data">
           <p>
             <label for="image">Ajouter une image:</label><br>
           </p>

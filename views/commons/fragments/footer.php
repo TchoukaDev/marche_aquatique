@@ -3,7 +3,7 @@
         <a href="contact">Contact</a> <!--Quand formulaire sera prêt -->
         <!-- <span class="contact"><a href="mailto:alain.mumu@orange.fr">Contact</a></span> -->
         <span>Informations légales</span>
-        <span>Politique de confidentialité</span>
+        <a href="confidentialite">Politique de confidentialité🔐</a>
     </div>
     <div class="references">
         <div class="container_liens">Liens utiles

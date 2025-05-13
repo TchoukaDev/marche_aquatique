@@ -19,7 +19,7 @@
   box-shadow: $shadow;
 }
 
-@mixin font($police, $weight, $size) {
+@mixin font($police, $weight: normal, $size) {
   font-family: $police;
   font-weight: $weight;
   font-size: $size;

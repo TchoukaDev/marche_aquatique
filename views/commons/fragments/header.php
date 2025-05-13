@@ -3,10 +3,10 @@
          <img src="public/assets/images/longe_cote.jpg" alt="logo longe cote" />
          <img src="public/assets/images/image_randonneur.png" alt="logo du club" />
      </div>
-     <div class="titre text_center">
+     <h1 class="titre text_center">
          ~~ Marche Aquatique ~~ <br />
          Les randonneurs des Sables du Born
-     </div>
+     </h1>
      <div class="container_connexion">
          <?php if (isset($_SESSION['connected'])) : ?>
              <p class="text_center bonjour_connexion">Bonjour <?= htmlspecialchars($_SESSION['user']['forename']) ?><br>

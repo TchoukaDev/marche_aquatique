@@ -7,7 +7,7 @@
 
 
         <!-- Formulaire d'ajout de contenu -->
-        <form id="addArticleForm" method="POST" action="infos_diverses/addArticle" enctype="multipart/form-data" class="hidden ArticleForm">
+        <form id="addArticleForm" method="POST" action="infos_diverses/addArticle" enctype="multipart/form-data" class="hidden adminForm">
             <div class="containerCloseBtn">
                 <button type="button" class="bouton hidden" id="closeAddArticleBtn" title="Fermer l'éditeur de texte"><svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -73,7 +73,7 @@
             <?php
             if (isset($_SESSION['admin'])) : ?>
                 <!-- boutons modifier et supprimer -->
-                <div class="text-end">
+                <div class="text_end">
                     <button type="button" class='bouton' id="updateArticleBtn_<?= $article['id'] ?>" title="Modifier la publication"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.5 9.5a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.5-9.5zM11.207 2L13 3.793 14.293 2.5 12.5.707 11.207 2zM10.5 2.707L2 11.207V13h1.793l8.5-8.5L10.5 2.707z" />
                         </svg></button>
@@ -86,7 +86,7 @@
 
 
                 <!-- Formulaire de modification -->
-                <form id="updateArticleForm_<?= $article['id'] ?>" method="POST" action="infos_diverses/updateArticle" enctype="multipart/form-data" class="hidden ArticleForm">
+                <form id="updateArticleForm_<?= $article['id'] ?>" method="POST" action="infos_diverses/updateArticle" enctype="multipart/form-data" class="hidden adminForm">
                     <div class="containerCloseBtn">
                         <button type="button" class="bouton hidden align_self_end" id="closeUpdateArticleBtn_<?= $article['id'] ?>" title="Fermer l'éditeur de texte"><svg xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"

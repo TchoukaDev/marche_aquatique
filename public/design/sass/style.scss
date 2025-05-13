@@ -56,12 +56,16 @@ a {
 h2 {
   @include boxShadow(3px 3px 0px 3px rgba(65, 201, 226, 0.75));
   @include border(2px solid $couleur3, 50px);
+  font-family: $pacifico;
+  font-weight: normal;
   text-align: center;
   text-decoration: underline;
   margin: 30px auto;
   padding: 10px;
-  width: 300px;
-  font-family: $pacifico;
+  width: 500px;
+  @include respond-to("medium") {
+    width: 300px;
+  }
 }
 
 h3 {
@@ -73,11 +77,20 @@ h3 {
   }
 }
 
+.ml_0 {
+  margin-left: 0;
+}
+.mt_0 {
+  margin-top: 0;
+}
+.mb_30 {
+  margin-bottom: 30px;
+}
 .text_center {
   text-align: center;
 }
 
-.text-end {
+.text_end {
   text-align: end;
 }
 
@@ -91,6 +104,10 @@ h3 {
 
 .text_lg {
   font-size: 20px;
+}
+
+.text_decoration_none {
+  text-decoration: none !important;
 }
 
 .bold {
@@ -107,6 +124,10 @@ h3 {
 
 .padding10 {
   padding: 10px;
+}
+
+.align_self_start {
+  align-self: flex-start;
 }
 
 .align_self_end {
@@ -196,7 +217,7 @@ svg {
 
 .date {
   @include couleurs(linear-gradient(to right, $couleur4, $couleur3), $couleur1);
-  @include font($pacifico, bold, 1.5rem);
+  @include font($pacifico, normal, 1.5rem);
   @include border(3px solid $couleur2, 20px);
   height: fit-content;
   width: fit-content;
@@ -213,7 +234,7 @@ svg {
 .container_meteo {
   @include flexbox(column, center);
   @include couleurs(linear-gradient(to left, $couleur4, $couleur3), $couleur1);
-  @include font($pacifico, bold, 1.5rem);
+  @include font($pacifico, normal, 1.5rem);
   @include border(3px solid $couleur2, 30px);
   height: fit-content;
   width: fit-content;
@@ -253,7 +274,7 @@ svg {
   grid-row: 1/3;
 
   span {
-    @include font($pacifico, bold, 5rem);
+    @include font($pacifico, normal, 5rem);
     display: inline-block;
     color: $couleur3;
     transform: translateY(0);

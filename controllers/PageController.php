@@ -96,6 +96,15 @@ class PageController extends MainController
         ];
         Utilities::renderPage($datasPage);
     }
+    public function confidentialitePage()
+    {
+        $datasPage = [
+            'title' => 'Politique de confidentialité',
+            'view' => 'views/pages/confidentialite.php',
+            'layout' => 'views/commons/layout.php'
+        ];
+        Utilities::renderPage($datasPage);
+    }
     public function errorPage($message)
     {
         $datasPage = [
