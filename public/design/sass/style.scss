@@ -29,6 +29,8 @@
 body,
 html {
   @include couleurs($couleur1);
+  margin: 0;
+  padding: 0;
 }
 body {
   @include flexbox(column, normal, normal);
