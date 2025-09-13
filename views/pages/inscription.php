@@ -3,8 +3,8 @@
 
     <div class="grid grid_inscription">
         <p>
-            <label for="forename">Prénom: </label><br>
-            <input type="text" name="forename" id="forename" placeholder="Votre prénom" autocomplete="given-name" required class="input_block">
+            <label for="firstname">Prénom: </label><br>
+            <input type="text" name="firstname" id="firstname" placeholder="Votre prénom" autocomplete="given-name" required class="input_block">
         </p>
         <p>
             <label for="name">Nom de famille: </label><br>
@@ -44,7 +44,7 @@
         unset($_SESSION['errorSignUp']);
     endif;
     if (isset($_SESSION['successSignUp'])) : ?>
-        <p class="success"><?= htmlspecialchars($_SESSION['successSignUp']) ?>'</p>
+        <p class="success"><?= htmlspecialchars($_SESSION['successSignUp']) ?></p>
     <?php
         unset($_SESSION['successSignUp']);
     endif;

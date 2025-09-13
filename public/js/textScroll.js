@@ -1,98 +1,52 @@
-import { Pages } from "./Pages.js";
+export class TextScroll {
+  constructor(containerId, texteId, direction) {
+    this.container = document.querySelector(`#${containerId}`);
+    this.texte = document.querySelector(`#${texteId}`);
+    this.direction = direction;
 
-export class TextScroll extends Pages {
-  constructor(container, containerId, texte, texteId) {
-    super();
-    container = document.querySelector(`#${containerId}`);
-    texte = document.querySelector(`#${texteId}`);
-    this.textScrollLeft(container, texte);
-    this.textScrollRight(container, texte);
+    // On lance l’animation seulement si les éléments existent
+    if (this.container && this.texte) {
+      this.startScroll(this.direction);
+    }
   }
 
   /**
-   * Fait défiler le texte de gauche à droite de manière fluide
-   * @param {HTMLElement} container - L'élément conteneur qui définit la zone de défilement
-   * @param {HTMLElement} texte - L'élément texte à faire défiler
+   * Lance l’animation du texte défilant
+   * @param {"left"|"right"} direction - sens du défilement
    */
-  textScrollRight(container, texte) {
-    const id = container.id;
-    const largeur_texte = texte.offsetWidth;
-    const positions = {};
-    const timestamp = {};
+  startScroll(direction) {
+    const container = this.container;
+    const texte = this.texte;
 
-    // Initialisation des positions si c'est la première fois
-    // Le texte commence hors écran à gauche (-largeur_texte)
-    if (!positions[id]) {
-      positions[id] = -largeur_texte;
-      timestamp[id] = 0;
-    }
+    // Position initiale du texte selon la direction
+    let pos = direction === "left" ? container.offsetWidth : -texte.offsetWidth;
+    let lastTime = 0;
 
     /**
-     * Fonction d'animation appelée à chaque frame
-     * Utilise requestAnimationFrame pour synchroniser avec le rafraîchissement écran
-     * @param {number} currentTimestamp - Timestamp fourni par requestAnimationFrame
+     * Fonction d’animation appelée à chaque frame
+     * @param {number} currentTimestamp - temps en ms depuis le chargement de la page
      */
     function step(currentTimestamp) {
-      // Initialisation du timestamp au premier appel
-      if (!timestamp[id]) timestamp[id] = currentTimestamp;
-      const elapsed = currentTimestamp - timestamp[id];
-
-      // Limite l'animation à ~60 FPS (1000ms/60 ≈ 16ms)
-      if (elapsed >= 16) {
-        const largeur_texte = texte.offsetWidth;
-        const largeur_container = container.offsetWidth;
-        // Déplace le texte de 1.5px vers la droite
-        positions[id] += 1.5;
-
-        // Réinitialise la position quand le texte sort du conteneur par la droite
-        if (positions[id] >= largeur_container) {
-          positions[id] = -largeur_texte;
-        }
-
-        // Applique la transformation CSS pour déplacer le texte
-        texte.style.transform = `translateX(${positions[id]}px)`;
-        timestamp[id] = currentTimestamp;
-      }
-      requestAnimationFrame(step);
-    }
-
-    requestAnimationFrame(step);
-  }
-
-  //  * Fait défiler le texte de droite à gauche de manière fluide
-  //  * Fonctionne sur le même principe que textScrollRight
-
-  textScrollLeft(container, texte) {
-    const id = container.id;
-    const largeur_texte = texte.offsetWidth;
-    const largeur_container = container.offsetWidth;
-    const positions = {};
-    const timestamp = {};
-
-    // Le texte commence à droite du conteneur
-    if (!positions[id]) {
-      positions[id] = largeur_container;
-      timestamp[id] = 0;
-    }
-
-    function step(currentTimestamp) {
-      if (!timestamp[id]) timestamp[id] = currentTimestamp;
-      const elapsed = currentTimestamp - timestamp[id];
+      if (!lastTime) lastTime = currentTimestamp;
+      const elapsed = currentTimestamp - lastTime;
 
       if (elapsed >= 16) {
         // ~60 FPS
-        const largeur_texte = texte.offsetWidth;
-        const largeur_container = container.offsetWidth;
-        // Déplace le texte de 1.5px vers la gauche
-        positions[id] -= 1.5;
+        // On déplace le texte selon la direction
+        pos += direction === "left" ? -1.5 : 1.5;
 
-        // Réinitialise la position quand le texte sort du conteneur par la gauche
-        if (positions[id] <= -largeur_texte) {
-          positions[id] = largeur_container;
+        // Réinitialisation de la position si le texte sort de l’écran
+        if (direction === "left" && pos <= -texte.offsetWidth) {
+          pos = container.offsetWidth;
+        } else if (direction === "right" && pos >= container.offsetWidth) {
+          pos = -texte.offsetWidth;
         }
 
-        texte.style.transform = `translateX(${positions[id]}px)`;
-        timestamp[id] = currentTimestamp;
+        // Application du déplacement
+        texte.style.transform = `translateX(${pos}px)`;
+
+        // Mise à jour du temps
+        lastTime = currentTimestamp;
       }
 
       requestAnimationFrame(step);

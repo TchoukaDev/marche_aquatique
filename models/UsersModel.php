@@ -4,11 +4,11 @@ require_once 'PdoModel.php';
 class UsersModel extends PdoModel
 {
 
-    public function createUser($name, $forename, $email, $telephone, $password, $cookie)
+    public function createUser($name, $firstname, $email, $telephone, $password, $cookie)
     {
         $db = $this->setDb();
-        $req = $db->prepare('INSERT INTO users(name, forename, email, telephone, password, cookie) VALUES(?,?,?,?,?,?)');
-        $result = $req->execute([$name, $forename, $email, $telephone, $password, $cookie]);
+        $req = $db->prepare('INSERT INTO users(name, firstname, email, telephone, password, cookie) VALUES(?,?,?,?,?,?)');
+        $result = $req->execute([$name, $firstname, $email, $telephone, $password, $cookie]);
         return $result;
     }
 

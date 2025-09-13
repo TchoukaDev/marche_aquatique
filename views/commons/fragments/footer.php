@@ -2,7 +2,7 @@
     <div class="infos_flex">
         <a href="contact">Contact</a> <!--Quand formulaire sera prêt -->
         <!-- <span class="contact"><a href="mailto:alain.mumu@orange.fr">Contact</a></span> -->
-        <span>Informations légales</span>
+        <a href="mentions">Mentions légales</a>
         <a href="confidentialite">Politique de confidentialité🔐</a>
     </div>
     <div class="references">

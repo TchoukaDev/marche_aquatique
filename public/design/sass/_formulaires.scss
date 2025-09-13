@@ -9,7 +9,10 @@ form {
   input {
     @include couleurs($couleur1);
     @include border(none, 5px);
-    padding: 5px;
+    padding: 10px;
+    &:focus {
+      outline-color: $couleur4;
+    }
     &.bouton {
       width: 150px;
     }
@@ -29,6 +32,7 @@ form {
 }
 
 .input_block {
+  width: 200px;
   display: block;
   margin: auto;
   margin-top: 10px;

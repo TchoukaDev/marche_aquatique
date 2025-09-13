@@ -9,7 +9,7 @@
      </h1>
      <div class="container_connexion">
          <?php if (isset($_SESSION['connected'])) : ?>
-             <p class="text_center bonjour_connexion">Bonjour <?= htmlspecialchars($_SESSION['user']['forename']) ?><br>
+             <p class="text_center bonjour_connexion">Bonjour <?= htmlspecialchars($_SESSION['user']['firstname']) ?><br>
                  Bienvenue sur notre site!</p>
              <a class=bouton_deconnexion href="deconnexion"><button class="bouton">Se déconnecter</button></a>
 
@@ -18,10 +18,10 @@
              <p class="text_center titre_connexion">Connexion</p>
              <form action="connexion" method="post" class=form_connexion>
                  <p>
-                     <input type=email name="email" id="email" placeholder="Email" autocomplete="email" class="input" required aria-label="email">
+                     <input type=email name="email" id="email" placeholder="Email" autocomplete="email" required aria-label="email">
                  </p>
                  <p>
-                     <input type="password" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" class="input" required aria-label="mot de passe">
+                     <input type="password" name="password" id="password" placeholder="Mot de passe" autocomplete="current-password" required aria-label="mot de passe">
                  </p>
                  <p>
                      <input type="submit" value="Se connecter" class="bouton"><br>

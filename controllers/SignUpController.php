@@ -8,7 +8,7 @@ class SignUpController extends PageController
             exit();
         }
 
-        $champsRequis = ['name', 'forename', 'email', 'telephone', 'password', 'check_password'];
+        $champsRequis = ['name', 'firstname', 'email', 'telephone', 'password', 'check_password'];
         $formulaireValide = true;
 
         foreach ($champsRequis as $champ) {
@@ -20,7 +20,7 @@ class SignUpController extends PageController
 
         if ($formulaireValide) {
             $name = htmlspecialchars($_POST['name']);
-            $forename = htmlspecialchars($_POST['forename']);
+            $firstname = htmlspecialchars($_POST['firstname']);
             $email = htmlspecialchars($_POST['email']);
             $telephone = htmlspecialchars($_POST["telephone"]);
             $password = htmlspecialchars($_POST['password']);
@@ -62,7 +62,7 @@ class SignUpController extends PageController
 
             $password = password_hash($password, PASSWORD_DEFAULT);
             $cookie = password_hash($email, PASSWORD_DEFAULT);
-            $resultat = $this->usersModel->createUser($name, $forename, $email, $telephone, $password, $cookie);
+            $resultat = $this->usersModel->createUser($name, $firstname, $email, $telephone, $password, $cookie);
             if ($resultat === false) {
                 $_SESSION['errorSignUp'] = 'Une erreur est survenue lors de l\'inscription, veuillez rééssayer.';
                 header('location: inscription');

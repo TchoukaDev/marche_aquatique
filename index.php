@@ -89,6 +89,9 @@ try {
         case 'confidentialite':
             $pageController->confidentialitePage();
             break;
+        case "mentions":
+            $pageController->mentionsPage();
+            break;
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

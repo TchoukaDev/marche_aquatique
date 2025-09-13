@@ -26,7 +26,10 @@
     <script src="public/js/Pages.js" type="module"></script>
     <script src="public/js/Contact.js" type="module"></script>
     <script src="public/js/Index.js" type="module"></script>
+    <script src="public/js/Presentation.js" type="module"></script>
     <script src="public/js/Galerie.js" type="module"></script>
+    <script src="public/js/Seances.js" type="module"></script>
+    <script src="public/js/Marche.js" type="module"></script>
     <script src="public/js/TextScroll.js" type="module"></script>
 
 

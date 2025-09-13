@@ -105,6 +105,15 @@ class PageController extends MainController
         ];
         Utilities::renderPage($datasPage);
     }
+    public function mentionsPage()
+    {
+        $datasPage = [
+            "title" => "Mentions légales",
+            "view" => "views/pages/mentions.php",
+            "layout" => "views/commons/layout.php"
+        ];
+        Utilities::renderPage($datasPage);
+    }
     public function errorPage($message)
     {
         $datasPage = [
