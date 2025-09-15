@@ -12,6 +12,7 @@ require_once 'controllers/Utilities.php';
 require_once 'controllers/SignUpController.php';
 require_once 'controllers/LoginController.php';
 require_once 'controllers/LogoutController.php';
+require_once 'views/commons/fragments/modale.php';
 $pageController = new PageController();
 
 try {

@@ -69,13 +69,10 @@ class PageController extends MainController
     }
     public function infosPage()
     {
-
         $infos = $this->infosModel->getAll();
-        require_once 'views/commons/fragments/modale.php';
         $datasPage = [
             'title' => 'Infos diverses',
             'infos' => $infos,
-            'deleteInfoModal' => $deleteInfoModal,
             'view' => 'views/pages/infos_diverses.php',
             'layout' => 'views/commons/layout.php'
         ];

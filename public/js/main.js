@@ -1,9 +1,7 @@
 import { Index } from "./Index.js";
 import { Galerie } from "./Galerie.js";
-import { TextScroll } from "./TextScroll.js";
 import { Infos } from "./Infos.js";
 import { Contact } from "./Contact.js";
-import { Pages } from "./Pages.js";
 import { Presentation } from "./Presentation.js";
 import { Seances } from "./Seances.js";
 import { Marche } from "./Marche.js";

@@ -136,5 +136,14 @@
         </section>
 
     <?php
+
     endforeach; // Modale
-    echo $deleteInfoModal;
+    foreach ($infos as $info) {
+        echo renderDeleteModal(
+            $info['id'],
+            "infoId",
+            "infos_diverses/deleteInfo",
+            "Êtes-vous sûr de vouloir supprimer cette publication ?",
+            !empty($info['image']) ? ['infoImage' => $info['image']] : []
+        );
+    }
