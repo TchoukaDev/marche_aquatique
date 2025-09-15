@@ -3,45 +3,41 @@ import { Pages } from "./Pages.js";
 export class Infos extends Pages {
   constructor() {
     super();
-    this.addArticleBtn = document.querySelector("#addArticleBtn");
-    this.closeAddArticleBtn = document.querySelector("#closeAddArticleBtn");
-    this.addArticleForm = document.querySelector("#addArticleForm");
+    this.addInfoBtn = document.querySelector("#addInfoBtn");
+    this.closeAddInfoBtn = document.querySelector("#closeAddInfoBtn");
+    this.addInfoForm = document.querySelector("#addInfoForm");
     this.modals = document.querySelectorAll('[id^="modal_"]');
-    this.updateArticleBtns = document.querySelectorAll(
-      `[id^="updateArticleBtn_"]`
-    );
+    this.updateInfoBtns = document.querySelectorAll(`[id^="updateInfoBtn_"]`);
 
     this.modalFunction();
-    this.openArticleForm();
-    this.closeArticleForm();
+    this.openInfoForm();
+    this.closeInfoForm();
     this.toggleUpdateForm();
   }
   // Formulaire de création de contenu
-  openArticleForm() {
-    this.addArticleBtn.addEventListener("click", () => {
-      this.addArticleBtn.classList.toggle("hidden");
-      this.addArticleForm.classList.toggle("hidden");
-      this.closeAddArticleBtn.classList.toggle("hidden");
+  openInfoForm() {
+    this.addInfoBtn.addEventListener("click", () => {
+      this.addInfoBtn.classList.toggle("hidden");
+      this.addInfoForm.classList.toggle("hidden");
+      this.closeAddInfoBtn.classList.toggle("hidden");
     });
   }
 
-  closeArticleForm() {
-    this.closeAddArticleBtn.addEventListener("click", () => {
-      this.addArticleBtn.classList.toggle("hidden");
-      this.addArticleForm.classList.toggle("hidden");
-      this.closeAddArticleBtn.classList.toggle("hidden");
+  closeInfoForm() {
+    this.closeAddInfoBtn.addEventListener("click", () => {
+      this.addInfoBtn.classList.toggle("hidden");
+      this.addInfoForm.classList.toggle("hidden");
+      this.closeAddInfoBtn.classList.toggle("hidden");
     });
   }
 
   // Formulaire de modification de contenu
   toggleUpdateForm() {
-    this.updateArticleBtns.forEach((updateBtn) => {
-      const articleId = updateBtn.id.split("_")[1];
-      const updateForm = document.querySelector(
-        `#updateArticleForm_${articleId}`
-      );
+    this.updateInfoBtns.forEach((updateBtn) => {
+      const infoId = updateBtn.id.split("_")[1];
+      const updateForm = document.querySelector(`#updateInfoForm_${infoId}`);
       const closeUpdateBtn = document.querySelector(
-        `#closeUpdateArticleBtn_${articleId}`
+        `#closeUpdateInfoBtn_${infoId}`,
       );
 
       // Ouvrir formulaire
@@ -72,14 +68,12 @@ export class Infos extends Pages {
     };
 
     this.modals.forEach((modal) => {
-      const articleId = modal.getAttribute("id").split("_")[1];
+      const infoId = modal.getAttribute("id").split("_")[1];
 
-      const deleteBtn = document.querySelector(
-        `#deleteArticleBtn_${articleId}`
-      );
-      const closeBtn = document.querySelector(`#closeModalBtn_${articleId}`);
+      const deleteBtn = document.querySelector(`#deleteInfoBtn_${infoId}`);
+      const closeBtn = document.querySelector(`#closeModalBtn_${infoId}`);
       const closeFooterBtn = document.querySelector(
-        `#closeFooterModalBtn_${articleId}`
+        `#closeFooterModalBtn_${infoId}`,
       );
 
       // Ajout des event listeners
@@ -98,9 +92,6 @@ export class Infos extends Pages {
 
       modal.addEventListener("click", (e) => {
         if (e.target === modal) {
-          console.log(
-            `Fermeture via clic extérieur pour l'article ${articleId}`
-          );
           closeModal(modal);
         }
       });

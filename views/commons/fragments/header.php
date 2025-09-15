@@ -32,7 +32,7 @@
              <p class="lien_inscription">Pas encore inscrit? <a class="inscription" href="inscription">Inscrivez-vous.</a></p>
              <?php
                 if (isset($_SESSION['error'])) : ?>
-                 <div class="error"><?= htmlspecialchars($_SESSION['error']); ?></div>
+                 <div class="error text_sm"><?= htmlspecialchars($_SESSION['error']); ?></div>
          <?php
                     unset($_SESSION['error']);
                 endif;

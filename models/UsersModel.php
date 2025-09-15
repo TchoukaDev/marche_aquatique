@@ -1,35 +1,30 @@
 <?php
-require_once 'PdoModel.php';
 
-class UsersModel extends PdoModel
+
+class UsersModel extends BaseModel
 {
-
-    public function createUser($name, $firstname, $email, $telephone, $password, $cookie)
+    public function __construct()
     {
-        $db = $this->setDb();
-        $req = $db->prepare('INSERT INTO users(name, firstname, email, telephone, password, cookie) VALUES(?,?,?,?,?,?)');
-        $result = $req->execute([$name, $firstname, $email, $telephone, $password, $cookie]);
-        return $result;
+        parent::__construct("users");
     }
 
     public function countEmail($email)
+
     {
         $db = $this->setDb();
-        $req = $db->prepare('SELECT COUNT(*) as user FROM users WHERE email = ? ');
-        $req->execute([$email]);
-        $result = $req->fetchColumn();
-        $req->closeCursor();
-        return $result;
+        $stmt = $db->prepare("SELECT COUNT(*) FROM {$this->table} WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetchColumn();
     }
+
     public function selectUserbyEmail($email)
     {
         $db = $this->setDb();
-        $req = $db->prepare('SELECT * FROM users WHERE email = ?');
-        $req->execute([$email]);
-        $result = $req->fetch(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-        return $result;
+        $stmt = $db->prepare("SELECT * FROM {$this->table} WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
     public function selectUserbyCookie($cookie)
     {
         $db = $this->setDb();

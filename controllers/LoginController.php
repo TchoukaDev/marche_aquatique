@@ -44,7 +44,7 @@ class LoginController extends MainController
                 }
 
                 if (isset($_POST['autoLogin'])) {
-                    setcookie('autoLogin', $user['cookie'], time() + 365 * 24 * 3600, '/', '', true, true);
+                    setcookie('autoLogin', $user['cookie'], time() + 30 * 24 * 3600, '/', '', true, true);
                 }
                 header('location: accueil');
                 exit();

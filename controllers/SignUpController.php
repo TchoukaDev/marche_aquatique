@@ -62,7 +62,7 @@ class SignUpController extends PageController
 
             $password = password_hash($password, PASSWORD_DEFAULT);
             $cookie = password_hash($email, PASSWORD_DEFAULT);
-            $resultat = $this->usersModel->createUser($name, $firstname, $email, $telephone, $password, $cookie);
+            $resultat = $this->usersModel->create(["name" => $name, "firstname" => $firstname, "email" => $email, "telephone" => $telephone, "password" => $password, "cookie" => $cookie]);
             if ($resultat === false) {
                 $_SESSION['errorSignUp'] = 'Une erreur est survenue lors de l\'inscription, veuillez rééssayer.';
                 header('location: inscription');

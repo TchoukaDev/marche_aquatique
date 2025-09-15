@@ -49,7 +49,7 @@
             <div class="imagesCheckbox">
               <div style="background-image: url(public/uploads/gallery/<?= $image['image'] ?>)" class="thumbnail"></div>
               <?php if (isset($_SESSION['admin'])): ?>
-                <input type=checkbox name="imagesName[]" value="<?= $image['image'] ?>">
+                <input type=checkbox name="imagesId[]" value="<?= $image['id'] ?>">
               <?php endif; ?>
             </div>
           <?php endforeach; ?>

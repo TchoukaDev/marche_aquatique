@@ -46,7 +46,7 @@ class PageController extends MainController
 
     public function galeriePage()
     {
-        $images = $this->galleryModel->getAllImages();
+        $images = $this->galleryModel->getAll();
         $datasPage = [
             'title' => 'Galerie',
             'images' => $images,
@@ -57,6 +57,9 @@ class PageController extends MainController
     }
     public function competitionsPage()
     {
+        if (!isset($_SESSION["connected"])) {
+            throw new Exception("Vous devez être connecté pour consulter cette page");
+        }
         $datasPage = [
             'title' => 'Compétitions',
             'view' => 'views/pages/competitions.php',
@@ -67,12 +70,12 @@ class PageController extends MainController
     public function infosPage()
     {
 
-        $articles = $this->articlesModel->getAllArticles();
+        $infos = $this->infosModel->getAll();
         require_once 'views/commons/fragments/modale.php';
         $datasPage = [
             'title' => 'Infos diverses',
-            'articles' => $articles,
-            'deleteArticleModal' => $deleteArticleModal,
+            'infos' => $infos,
+            'deleteInfoModal' => $deleteInfoModal,
             'view' => 'views/pages/infos_diverses.php',
             'layout' => 'views/commons/layout.php'
         ];

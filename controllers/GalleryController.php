@@ -32,7 +32,7 @@ class GalleryController extends MainController
                 }
 
                 $image = Utilities::uploadImage("public/uploads/gallery/", $file, 'galleryError', 'galerie');
-                $result = $this->galleryModel->addImageDb($image);
+                $result = $this->galleryModel->create(['image' => $image]);
 
                 if ($result === false) {
                     $_SESSION['galleryError'] = "Une image n'a pas pu être ajoutée.";
@@ -49,26 +49,20 @@ class GalleryController extends MainController
     public function deleteImage()
     {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            if (empty($_POST['imagesName'])) {
+            if (empty($_POST['imagesId'])) {
                 $_SESSION['galleryError'] = "Veuillez sélectionner une image à supprimer";
                 header("location:" . ROOT . "galerie");
                 exit();
             }
-
-            $names = $_POST['imagesName'];
-
-            foreach ($names as $name) {
-
-                $result = $this->galleryModel->deleteImageDb(htmlspecialchars($name));
-                if ($result === false) {
-                    $_SESSION['galleryError'] = "Erreur: les images n'a pas pu être supprimées.";
-                    header("location:" . ROOT . "galerie");
-                    exit();
+            $ids = $_POST['imagesId']; // tableau d'IDs sélectionnés
+            foreach ($ids as $id) {
+                $image = $this->galleryModel->getById($id); // récupère le nom du fichier
+                if ($image && !empty($image['image'])) {
+                    Utilities::unlinkImage('public/uploads/gallery/', $image['image'], "galerie", "galleryError");
                 }
-                if (!Utilities::unlinkImage("public/uploads/gallery/", $name, "galerie")) {
-                    $_SESSION['galleryError'] = "Erreur: les images n'a pas pu être supprimées.";
-                } else $_SESSION['gallerySuccess'] = "Les images sélectionnées ont bien été supprimées.";
+                $this->galleryModel->delete($id); // supprime l'entrée en BDD
             }
+            $_SESSION['gallerySuccess'] = "Les images sélectionnées ont été supprimées.";
             header("location:" . ROOT . "galerie");
             exit();
         }

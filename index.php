@@ -7,7 +7,7 @@ define('ROOT', str_replace("index.php", "", (isset($_SERVER['HTTPS']) ? "https" 
 require_once 'controllers/MainController.php';
 require_once 'controllers/PageController.php';
 require_once 'controllers/GalleryController.php';
-require_once 'controllers/ArticlesController.php';
+require_once 'controllers/InfosController.php';
 require_once 'controllers/Utilities.php';
 require_once 'controllers/SignUpController.php';
 require_once 'controllers/LoginController.php';
@@ -53,17 +53,17 @@ try {
             $pageController->competitionsPage();
             break;
         case "infos_diverses":
-            $articlesController = new ArticlesController();
+            $infosController = new Infoscontroller();
             if (isset($url[1])) {
                 switch ($url[1]) {
-                    case 'addArticle':
-                        $articlesController->addArticle();
+                    case 'addInfo':
+                        $infosController->addInfo();
                         break;
-                    case 'updateArticle':
-                        $articlesController->updateArticle();
+                    case 'updateInfo':
+                        $infosController->updateInfo();
                         break;
-                    case "deleteArticle":
-                        $articlesController->deleteArticle();
+                    case "deleteInfo":
+                        $infosController->deleteInfo();
                         break;
                     default:
                         $pageController->infosPage();

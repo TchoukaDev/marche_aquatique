@@ -46,10 +46,10 @@ class Utilities
         }
     }
 
-    public static function unlinkImage($directory, $file, $redirection)
+    public static function unlinkImage($directory, $file, $redirection, $error)
     {
         if (!unlink($directory . $file)) {
-            $_SESSION['galleryError'] = "Erreur: le fichier à supprimer n'existe pas.";
+            $_SESSION[$error] = "Erreur: le fichier à supprimer n'existe pas.";
             header("location:" . ROOT . $redirection);
             exit();
         } else return true;
